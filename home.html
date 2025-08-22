@@ -127,7 +127,7 @@
     /* Responsive Navbar */
     @media (max-width: 768px) {
       nav {
-        display: none;
+        display: flex;
         flex-direction: column;
         background: #333;
         position: absolute;
@@ -136,8 +136,10 @@
         width: 200px;
       }
       nav a {
-        padding: 12px;
-        border-bottom: 1px solid #444;
+         color: white;
+  margin: 0 12px;
+  text-decoration: none;
+  transition: color 0.3s;
       }
       nav.active {
         display: flex;
