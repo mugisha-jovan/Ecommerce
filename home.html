@@ -16,8 +16,8 @@
       line-height: 1.6;
     }
     header {
-      background: #222;
-      color: #fff;
+      background: #f8f9fa;
+      color: #333;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -27,8 +27,8 @@
       z-index: 1000;
     }
     .logo {
-  width: 120px;
-  height: 60px;
+  width: 250px;
+  height: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -46,7 +46,7 @@
   align-items: center;
     }
     nav a {
-  color: white;
+  color: #333;
   margin: 0 2px;
   text-decoration: none;
   transition: color 0.3s;
@@ -61,17 +61,7 @@
       cursor: pointer;
     }
 
-    /* Logo Section */
-    .logo-section {
-      background: white;
-      text-align: left;
-      padding: 20px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    .logo-section img {
-      max-height: 120px;
-      width: auto;
-    }
+
 
     /* Hero */
     .hero {
@@ -171,7 +161,9 @@
 <body>
 
   <header>
-    <div class="logo"></div>
+    <div class="logo">
+      <img src="final logo.png" alt="MujoMart Logo">
+    </div>
     <span class="menu-toggle">☰</span>
     <nav>
       <a href="#">Home</a>
@@ -181,10 +173,6 @@
       <a href="#">Contact</a>
     </nav>
   </header>
-
-  <section class="logo-section">
-    <img src="final logo.png" alt="MujoMart Logo">
-  </section>
 
   <section class="hero">
     <h1>Welcome to MujoMart</h1>
