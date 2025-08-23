@@ -27,12 +27,87 @@
       top: 0;
       z-index: 1000;
     }
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 0px;
+    }
+    .hamburger-menu {
+      cursor: pointer;
+      font-size: 24px;
+      padding: 6px;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+    .hamburger-menu:hover {
+      background-color: rgba(0,0,0,0.1);
+    }
+
+    /* Dropdown Menu */
+    .dropdown-menu {
+      position: absolute;
+      background: white;
+      width: 280px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      border-radius: 8px;
+      z-index: 999;
+      display: none;
+      max-height: 80vh;
+      overflow-y: auto;
+      border: 1px solid #e9ecef;
+    }
+    .dropdown-menu.active {
+      display: block;
+    }
+    .dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 15px 20px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .dropdown-item:last-child {
+      border-bottom: none;
+    }
+    .dropdown-item:hover {
+      background-color: #f8f9fa;
+    }
+    .dropdown-item i {
+      font-size: 18px;
+      color: #666;
+      width: 20px;
+      text-align: center;
+    }
+    .dropdown-item span {
+      color: #333;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .dropdown-menu {
+        width: 250px;
+        left: 10px;
+        top: 100px;
+      }
+      .logo {
+        width: 500px;
+        height: 80px;
+      }
+      .header-left {
+        gap: 10px;
+      }
+    }
     .logo {
-  width: 600px;
+  width: 700px;
   height: 100px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  margin-left: -15px;
 }
 .logo img {
   width: 100%;
@@ -282,8 +357,13 @@
 <body>
 
   <header>
-    <div class="logo">
-      <img src="final logo.png" alt="MujoMart Logo">
+    <div class="header-left">
+      <div class="hamburger-menu">
+        <i class="fas fa-bars"></i>
+      </div>
+      <div class="logo">
+        <img src="final logo.png" alt="MujoMart Logo">
+      </div>
     </div>
     <div class="user-actions">
       <a href="#"><i class="fas fa-user"></i> Login</a>
@@ -292,6 +372,58 @@
       <a href="#" class="cart-icon"><i class="fas fa-shopping-cart"></i> Cart <span class="cart-count">0</span></a>
     </div>
   </header>
+
+  <!-- Dropdown Menu -->
+  <div class="dropdown-menu" id="dropdownMenu">
+    <div class="dropdown-item">
+      <i class="fas fa-mobile-alt"></i>
+      <span>Phones & Tablets</span>
+    </div>
+    <div class="dropdown-item">
+      <i class="fas fa-tv"></i>
+      <span>Electronics</span>
+    </div>
+    <div class="dropdown-item">
+      <i class="fas fa-coffee"></i>
+      <span>Appliances</span>
+    </div>
+    <div class="dropdown-item">
+      <i class="fas fa-desktop"></i>
+      <span>Computing</span>
+    </div>
+    <div class="dropdown-item">
+      <i class="fas fa-gamepad"></i>
+      <span>Gaming</span>
+    </div>
+    <div class="dropdown-item">
+      <i class="fas fa-spa"></i>
+      <span>Health & Beauty</span>
+    </div>
+    <div class="dropdown-item">
+      <i class="fas fa-home"></i>
+      <span>Home</span>
+    </div>
+    <div class="dropdown-item">
+      <i class="fas fa-apple-alt"></i>
+      <span>Supermarket</span>
+    </div>
+    <div class="dropdown-item">
+      <i class="fas fa-tshirt"></i>
+      <span>Fashion</span>
+    </div>
+    <div class="dropdown-item">
+      <i class="fas fa-baby"></i>
+      <span>Baby Products</span>
+    </div>
+    <div class="dropdown-item">
+      <i class="fas fa-shopping-bag"></i>
+      <span>Official Stores</span>
+    </div>
+    <div class="dropdown-item">
+      <i class="fas fa-ellipsis-h"></i>
+      <span>Other Categories</span>
+    </div>
+  </div>
 
   <section class="search-section">
     <div class="search-container">
@@ -376,6 +508,34 @@
   </footer>
 
   <script>
+    // Dropdown menu functionality
+    const hamburgerMenu = document.querySelector('.hamburger-menu');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+    
+    hamburgerMenu.addEventListener('click', function(e) {
+      e.stopPropagation();
+      dropdownMenu.classList.toggle('active');
+      
+      // Position dropdown relative to hamburger menu
+      if (dropdownMenu.classList.contains('active')) {
+        const rect = hamburgerMenu.getBoundingClientRect();
+        dropdownMenu.style.top = (rect.bottom + 5) + 'px';
+        dropdownMenu.style.left = rect.left + 'px';
+      }
+    });
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(event) {
+      if (!hamburgerMenu.contains(event.target) && !dropdownMenu.contains(event.target)) {
+        dropdownMenu.classList.remove('active');
+      }
+    });
+
+    // Close dropdown on window resize
+    window.addEventListener('resize', function() {
+      dropdownMenu.classList.remove('active');
+    });
+
     // Wishlist functionality
     const wishlistBtns = document.querySelectorAll('.wishlist-btn');
     wishlistBtns.forEach(btn => {
