@@ -21,14 +21,14 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 15px 20px;
+      padding: 8px 15px;
       position: sticky;
       top: 0;
       z-index: 1000;
     }
     .logo {
-  width: 220px;
-  height: 160px;
+  width: 120px;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -59,6 +59,18 @@
       display: none;
       font-size: 26px;
       cursor: pointer;
+    }
+
+    /* Logo Section */
+    .logo-section {
+      background: white;
+      text-align: left;
+      padding: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .logo-section img {
+      max-height: 120px;
+      width: auto;
     }
 
     /* Hero */
@@ -169,6 +181,10 @@
       <a href="#">Contact</a>
     </nav>
   </header>
+
+  <section class="logo-section">
+    <img src="final logo.png" alt="MujoMart Logo">
+  </section>
 
   <section class="hero">
     <h1>Welcome to MujoMart</h1>
