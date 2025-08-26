@@ -778,9 +778,6 @@
     <!-- Navigation Menu -->
     <div class="nav-menu">
       <div class="nav-content">
-        <div class="nav-item" id="categoriesMenu">
-          <i class="fas fa-bars"></i> All Categories
-        </div>
         <div class="nav-item">Electronics</div>
         <div class="nav-item">Fashion</div>
         <div class="nav-item">Home & Garden</div>
@@ -793,61 +790,7 @@
     </div>
   </header>
 
-  <!-- Enhanced Dropdown Menu -->
-  <div class="dropdown-menu" id="dropdownMenu">
-    <div class="dropdown-header">
-      <h3>Shop by Category</h3>
-      <p>Discover millions of products across all categories</p>
-    </div>
-    <div class="dropdown-item">
-      <i class="fas fa-mobile-alt"></i>
-      <span>Phones & Tablets</span>
-    </div>
-    <div class="dropdown-item">
-      <i class="fas fa-tv"></i>
-      <span>Electronics</span>
-    </div>
-    <div class="dropdown-item">
-      <i class="fas fa-coffee"></i>
-      <span>Appliances</span>
-    </div>
-    <div class="dropdown-item">
-      <i class="fas fa-desktop"></i>
-      <span>Computing</span>
-    </div>
-    <div class="dropdown-item">
-      <i class="fas fa-gamepad"></i>
-      <span>Gaming</span>
-    </div>
-    <div class="dropdown-item">
-      <i class="fas fa-spa"></i>
-      <span>Health & Beauty</span>
-    </div>
-    <div class="dropdown-item">
-      <i class="fas fa-home"></i>
-      <span>Home & Garden</span>
-    </div>
-    <div class="dropdown-item">
-      <i class="fas fa-apple-alt"></i>
-      <span>Supermarket</span>
-    </div>
-    <div class="dropdown-item">
-      <i class="fas fa-tshirt"></i>
-      <span>Fashion</span>
-    </div>
-    <div class="dropdown-item">
-      <i class="fas fa-baby"></i>
-      <span>Baby Products</span>
-    </div>
-    <div class="dropdown-item">
-      <i class="fas fa-shopping-bag"></i>
-      <span>Official Stores</span>
-    </div>
-    <div class="dropdown-item">
-      <i class="fas fa-ellipsis-h"></i>
-      <span>View All Categories</span>
-    </div>
-  </div>
+  
 
   <!-- Enhanced Hero Section -->
   <section class="hero">
@@ -1062,33 +1005,7 @@
   </footer>
 
   <script>
-    // Enhanced Dropdown menu functionality
-    const categoriesMenu = document.getElementById('categoriesMenu');
-    const dropdownMenu = document.getElementById('dropdownMenu');
     
-    categoriesMenu.addEventListener('click', function(e) {
-      e.stopPropagation();
-      dropdownMenu.classList.toggle('active');
-      
-      // Position dropdown relative to categories menu
-      if (dropdownMenu.classList.contains('active')) {
-        const rect = categoriesMenu.getBoundingClientRect();
-        dropdownMenu.style.top = (rect.bottom + 5) + 'px';
-        dropdownMenu.style.left = rect.left + 'px';
-      }
-    });
-    
-    // Close dropdown when clicking outside
-    document.addEventListener('click', function(event) {
-      if (!categoriesMenu.contains(event.target) && !dropdownMenu.contains(event.target)) {
-        dropdownMenu.classList.remove('active');
-      }
-    });
-
-    // Close dropdown on window resize
-    window.addEventListener('resize', function() {
-      dropdownMenu.classList.remove('active');
-    });
 
     // Enhanced Wishlist functionality
     const wishlistBtns = document.querySelectorAll('.wishlist-btn');
