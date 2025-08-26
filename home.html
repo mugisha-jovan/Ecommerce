@@ -64,6 +64,68 @@
       color: #ff6600;
     }
     
+    /* Topbar dropdowns */
+    .topbar-dropdown {
+      position: relative;
+    }
+    .topbar-trigger {
+      color: white;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+    }
+    .topbar-trigger i.chev {
+      font-size: 10px;
+      opacity: 0.8;
+    }
+    .topbar-panel {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      margin-top: 8px;
+      background: #ffffff;
+      color: #333;
+      min-width: 260px;
+      max-height: 60vh;
+      border-radius: 10px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      border: 1px solid #e9ecef;
+      display: none;
+      overflow: hidden;
+      z-index: 1100;
+    }
+    .topbar-panel.active { display: block; }
+    .topbar-search {
+      padding: 10px;
+      border-bottom: 1px solid #f0f0f0;
+      background: #f8f9fa;
+    }
+    .topbar-search input {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid #e1e5ea;
+      border-radius: 6px;
+      font-size: 12px;
+      outline: none;
+    }
+    .topbar-list {
+      max-height: 48vh;
+      overflow: auto;
+    }
+    .topbar-option {
+      padding: 10px 12px;
+      cursor: pointer;
+      transition: background 0.2s;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+    }
+    .topbar-option:hover { background: #f8f9fa; }
+    .topbar-option small { color: #888; font-size: 11px; }
+    
     .main-header {
       background: white;
       padding: 15px 20px;
@@ -106,6 +168,14 @@
       justify-content: flex-start;
       position: relative;
       overflow: visible;
+      margin-left: -20px;
+    }
+
+    /* Align logo to the true left edge on wide screens with centered content */
+    @media (min-width: 1201px) {
+      .logo {
+        margin-left: calc((100vw - 1200px) / -2 - 20px);
+      }
     }
     
     .logo img {
@@ -113,7 +183,7 @@
       height: 100%;
       object-fit: contain;
       display: block;
-      transform: scale(1.8);
+      transform: scale(2.0);
       transform-origin: left top;
     }
     
@@ -746,8 +816,20 @@
         <span><i class="fas fa-envelope"></i> support@mujomart.com</span>
       </div>
       <div class="top-bar-right">
-        <a href="#"><i class="fas fa-globe"></i> English</a>
-        <a href="#"><i class="fas fa-dollar-sign"></i> USD</a>
+        <div class="topbar-dropdown" id="langDd">
+          <a class="topbar-trigger"><i class="fas fa-globe"></i> <span id="langLabel">English</span> <i class="fas fa-chevron-down chev"></i></a>
+          <div class="topbar-panel" id="langPanel">
+            <div class="topbar-search"><input type="text" id="langSearch" placeholder="Search language..."></div>
+            <div class="topbar-list" id="langList"></div>
+          </div>
+        </div>
+        <div class="topbar-dropdown" id="currDd">
+          <a class="topbar-trigger"><i class="fas fa-dollar-sign"></i> <span id="currLabel">USD</span> <i class="fas fa-chevron-down chev"></i></a>
+          <div class="topbar-panel" id="currPanel">
+            <div class="topbar-search"><input type="text" id="currSearch" placeholder="Search currency..."></div>
+            <div class="topbar-list" id="currList"></div>
+          </div>
+        </div>
         <a href="#"><i class="fas fa-shipping-fast"></i> Free Shipping</a>
       </div>
     </div>
@@ -1065,6 +1147,217 @@
   </footer>
 
   <script>
+    // Topbar Language and Currency dropdowns
+    const langDd = document.getElementById('langDd');
+    const langPanel = document.getElementById('langPanel');
+    const langList = document.getElementById('langList');
+    const langSearch = document.getElementById('langSearch');
+    const langLabel = document.getElementById('langLabel');
+
+    const currDd = document.getElementById('currDd');
+    const currPanel = document.getElementById('currPanel');
+    const currList = document.getElementById('currList');
+    const currSearch = document.getElementById('currSearch');
+    const currLabel = document.getElementById('currLabel');
+
+    const languages = [
+      { code: 'en', name: 'English' },
+      { code: 'es', name: 'Spanish' },
+      { code: 'fr', name: 'French' },
+      { code: 'de', name: 'German' },
+      { code: 'zh', name: 'Chinese (Mandarin)' },
+      { code: 'zh-TW', name: 'Chinese (Traditional)' },
+      { code: 'ar', name: 'Arabic' },
+      { code: 'pt', name: 'Portuguese' },
+      { code: 'ru', name: 'Russian' },
+      { code: 'ja', name: 'Japanese' },
+      { code: 'ko', name: 'Korean' },
+      { code: 'it', name: 'Italian' },
+      { code: 'nl', name: 'Dutch' },
+      { code: 'sv', name: 'Swedish' },
+      { code: 'no', name: 'Norwegian' },
+      { code: 'da', name: 'Danish' },
+      { code: 'fi', name: 'Finnish' },
+      { code: 'pl', name: 'Polish' },
+      { code: 'tr', name: 'Turkish' },
+      { code: 'he', name: 'Hebrew' },
+      { code: 'hi', name: 'Hindi' },
+      { code: 'bn', name: 'Bengali' },
+      { code: 'ur', name: 'Urdu' },
+      { code: 'fa', name: 'Persian' },
+      { code: 'sw', name: 'Swahili' },
+      { code: 'am', name: 'Amharic' },
+      { code: 'yo', name: 'Yoruba' },
+      { code: 'ig', name: 'Igbo' },
+      { code: 'ha', name: 'Hausa' },
+      { code: 'zu', name: 'Zulu' },
+      { code: 'xh', name: 'Xhosa' },
+      { code: 'af', name: 'Afrikaans' },
+      { code: 'el', name: 'Greek' },
+      { code: 'cs', name: 'Czech' },
+      { code: 'sk', name: 'Slovak' },
+      { code: 'ro', name: 'Romanian' },
+      { code: 'hu', name: 'Hungarian' },
+      { code: 'uk', name: 'Ukrainian' },
+      { code: 'bg', name: 'Bulgarian' },
+      { code: 'sr', name: 'Serbian' },
+      { code: 'hr', name: 'Croatian' },
+      { code: 'sl', name: 'Slovenian' },
+      { code: 'et', name: 'Estonian' },
+      { code: 'lv', name: 'Latvian' },
+      { code: 'lt', name: 'Lithuanian' },
+      { code: 'ms', name: 'Malay' },
+      { code: 'id', name: 'Indonesian' },
+      { code: 'th', name: 'Thai' },
+      { code: 'vi', name: 'Vietnamese' },
+      { code: 'ta', name: 'Tamil' },
+      { code: 'te', name: 'Telugu' },
+      { code: 'mr', name: 'Marathi' },
+      { code: 'gu', name: 'Gujarati' },
+      { code: 'pa', name: 'Punjabi' },
+      { code: 'ml', name: 'Malayalam' },
+      { code: 'kn', name: 'Kannada' },
+      { code: 'si', name: 'Sinhala' },
+      { code: 'ne', name: 'Nepali' },
+      { code: 'my', name: 'Burmese' },
+      { code: 'km', name: 'Khmer' },
+      { code: 'lo', name: 'Lao' },
+      { code: 'mn', name: 'Mongolian' },
+      { code: 'fil', name: 'Filipino' },
+      { code: 'ga', name: 'Irish' },
+      { code: 'cy', name: 'Welsh' },
+      { code: 'ca', name: 'Catalan' },
+      { code: 'eu', name: 'Basque' },
+      { code: 'gl', name: 'Galician' },
+      { code: 'is', name: 'Icelandic' },
+      { code: 'mt', name: 'Maltese' },
+      { code: 'sq', name: 'Albanian' },
+      { code: 'mk', name: 'Macedonian' },
+      { code: 'kk', name: 'Kazakh' },
+      { code: 'uz', name: 'Uzbek' },
+      { code: 'tg', name: 'Tajik' },
+      { code: 'ky', name: 'Kyrgyz' },
+      { code: 'ps', name: 'Pashto' },
+      { code: 'az', name: 'Azerbaijani' },
+      { code: 'ka', name: 'Georgian' },
+      { code: 'hy', name: 'Armenian' },
+      { code: 'ur', name: 'Urdu' },
+      { code: 'sd', name: 'Sindhi' },
+      { code: 'ku', name: 'Kurdish' },
+      { code: 'bs', name: 'Bosnian' },
+      { code: 'eo', name: 'Esperanto' },
+    ];
+
+    const currencies = [
+      { code: 'USD', name: 'US Dollar' },
+      { code: 'EUR', name: 'Euro' },
+      { code: 'GBP', name: 'British Pound' },
+      { code: 'JPY', name: 'Japanese Yen' },
+      { code: 'CNY', name: 'Chinese Yuan' },
+      { code: 'INR', name: 'Indian Rupee' },
+      { code: 'AUD', name: 'Australian Dollar' },
+      { code: 'CAD', name: 'Canadian Dollar' },
+      { code: 'CHF', name: 'Swiss Franc' },
+      { code: 'SEK', name: 'Swedish Krona' },
+      { code: 'NOK', name: 'Norwegian Krone' },
+      { code: 'DKK', name: 'Danish Krone' },
+      { code: 'PLN', name: 'Polish Zloty' },
+      { code: 'TRY', name: 'Turkish Lira' },
+      { code: 'RUB', name: 'Russian Ruble' },
+      { code: 'BRL', name: 'Brazilian Real' },
+      { code: 'MXN', name: 'Mexican Peso' },
+      { code: 'ZAR', name: 'South African Rand' },
+      { code: 'KES', name: 'Kenyan Shilling' },
+      { code: 'NGN', name: 'Nigerian Naira' },
+      { code: 'GHS', name: 'Ghanaian Cedi' },
+      { code: 'UGX', name: 'Ugandan Shilling' },
+      { code: 'TZS', name: 'Tanzanian Shilling' },
+      { code: 'AED', name: 'UAE Dirham' },
+      { code: 'SAR', name: 'Saudi Riyal' },
+      { code: 'QAR', name: 'Qatari Riyal' },
+      { code: 'KWD', name: 'Kuwaiti Dinar' },
+      { code: 'BHD', name: 'Bahraini Dinar' },
+      { code: 'OMR', name: 'Omani Rial' },
+      { code: 'EGP', name: 'Egyptian Pound' },
+      { code: 'PKR', name: 'Pakistani Rupee' },
+      { code: 'BDT', name: 'Bangladeshi Taka' },
+      { code: 'THB', name: 'Thai Baht' },
+      { code: 'VND', name: 'Vietnamese Dong' },
+      { code: 'KRW', name: 'South Korean Won' },
+      { code: 'HKD', name: 'Hong Kong Dollar' },
+      { code: 'TWD', name: 'New Taiwan Dollar' },
+      { code: 'SGD', name: 'Singapore Dollar' },
+      { code: 'MYR', name: 'Malaysian Ringgit' },
+      { code: 'PHP', name: 'Philippine Peso' },
+      { code: 'IDR', name: 'Indonesian Rupiah' },
+      { code: 'NZD', name: 'New Zealand Dollar' },
+      { code: 'ILS', name: 'Israeli Shekel' },
+      { code: 'UAH', name: 'Ukrainian Hryvnia' },
+      { code: 'RON', name: 'Romanian Leu' },
+      { code: 'HUF', name: 'Hungarian Forint' },
+      { code: 'CZK', name: 'Czech Koruna' },
+      { code: 'ARS', name: 'Argentine Peso' },
+      { code: 'CLP', name: 'Chilean Peso' },
+      { code: 'COP', name: 'Colombian Peso' },
+      { code: 'PEN', name: 'Peruvian Sol' }
+    ];
+
+    function renderOptions(container, items, onSelect) {
+      container.innerHTML = '';
+      items.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'topbar-option';
+        div.innerHTML = `<span>${item.name}</span><small>${item.code}</small>`;
+        div.addEventListener('click', () => onSelect(item));
+        container.appendChild(div);
+      });
+    }
+
+    // Initialize lists
+    renderOptions(langList, languages, (item) => {
+      langLabel.textContent = item.name;
+      langPanel.classList.remove('active');
+    });
+    renderOptions(currList, currencies, (item) => {
+      currLabel.textContent = item.code;
+      currPanel.classList.remove('active');
+    });
+
+    // Toggle handlers
+    langDd.querySelector('.topbar-trigger').addEventListener('click', (e) => {
+      e.stopPropagation();
+      langPanel.classList.toggle('active');
+      currPanel.classList.remove('active');
+    });
+    currDd.querySelector('.topbar-trigger').addEventListener('click', (e) => {
+      e.stopPropagation();
+      currPanel.classList.toggle('active');
+      langPanel.classList.remove('active');
+    });
+
+    // Search filters
+    langSearch.addEventListener('input', () => {
+      const q = langSearch.value.toLowerCase();
+      const filtered = languages.filter(l => l.name.toLowerCase().includes(q) || l.code.toLowerCase().includes(q));
+      renderOptions(langList, filtered, (item) => {
+        langLabel.textContent = item.name;
+        langPanel.classList.remove('active');
+      });
+    });
+    currSearch.addEventListener('input', () => {
+      const q = currSearch.value.toLowerCase();
+      const filtered = currencies.filter(c => c.name.toLowerCase().includes(q) || c.code.toLowerCase().includes(q));
+      renderOptions(currList, filtered, (item) => {
+        currLabel.textContent = item.code;
+        currPanel.classList.remove('active');
+      });
+    });
+
+    // Close on outside click
+    document.addEventListener('click', () => {
+      langPanel.classList.remove('active');
+      currPanel.classList.remove('active');
+    });
     // Enhanced Dropdown menu functionality (restored)
     const categoriesMenu = document.getElementById('categoriesMenu');
     const dropdownMenu = document.getElementById('dropdownMenu');
