@@ -824,7 +824,7 @@
           </div>
         </div>
         <div class="topbar-dropdown" id="currDd">
-          <a class="topbar-trigger"><i class="fas fa-dollar-sign"></i> <span id="currLabel">USD</span> <i class="fas fa-chevron-down chev"></i></a>
+          <a class="topbar-trigger"><i class="fas fa-coins"></i> <span id="currSymbol">$</span> <span id="currLabel">USD</span> <i class="fas fa-chevron-down chev"></i></a>
           <div class="topbar-panel" id="currPanel">
             <div class="topbar-search"><input type="text" id="currSearch" placeholder="Search currency..."></div>
             <div class="topbar-list" id="currList"></div>
@@ -1159,6 +1159,7 @@
     const currList = document.getElementById('currList');
     const currSearch = document.getElementById('currSearch');
     const currLabel = document.getElementById('currLabel');
+    const currSymbol = document.getElementById('currSymbol');
 
     const languages = [
       { code: 'en', name: 'English' },
@@ -1249,57 +1250,57 @@
     ];
 
     const currencies = [
-      { code: 'USD', name: 'US Dollar' },
-      { code: 'EUR', name: 'Euro' },
-      { code: 'GBP', name: 'British Pound' },
-      { code: 'JPY', name: 'Japanese Yen' },
-      { code: 'CNY', name: 'Chinese Yuan' },
-      { code: 'INR', name: 'Indian Rupee' },
-      { code: 'AUD', name: 'Australian Dollar' },
-      { code: 'CAD', name: 'Canadian Dollar' },
-      { code: 'CHF', name: 'Swiss Franc' },
-      { code: 'SEK', name: 'Swedish Krona' },
-      { code: 'NOK', name: 'Norwegian Krone' },
-      { code: 'DKK', name: 'Danish Krone' },
-      { code: 'PLN', name: 'Polish Zloty' },
-      { code: 'TRY', name: 'Turkish Lira' },
-      { code: 'RUB', name: 'Russian Ruble' },
-      { code: 'BRL', name: 'Brazilian Real' },
-      { code: 'MXN', name: 'Mexican Peso' },
-      { code: 'ZAR', name: 'South African Rand' },
-      { code: 'KES', name: 'Kenyan Shilling' },
-      { code: 'NGN', name: 'Nigerian Naira' },
-      { code: 'GHS', name: 'Ghanaian Cedi' },
-      { code: 'UGX', name: 'Ugandan Shilling' },
-      { code: 'TZS', name: 'Tanzanian Shilling' },
-      { code: 'AED', name: 'UAE Dirham' },
-      { code: 'SAR', name: 'Saudi Riyal' },
-      { code: 'QAR', name: 'Qatari Riyal' },
-      { code: 'KWD', name: 'Kuwaiti Dinar' },
-      { code: 'BHD', name: 'Bahraini Dinar' },
-      { code: 'OMR', name: 'Omani Rial' },
-      { code: 'EGP', name: 'Egyptian Pound' },
-      { code: 'PKR', name: 'Pakistani Rupee' },
-      { code: 'BDT', name: 'Bangladeshi Taka' },
-      { code: 'THB', name: 'Thai Baht' },
-      { code: 'VND', name: 'Vietnamese Dong' },
-      { code: 'KRW', name: 'South Korean Won' },
-      { code: 'HKD', name: 'Hong Kong Dollar' },
-      { code: 'TWD', name: 'New Taiwan Dollar' },
-      { code: 'SGD', name: 'Singapore Dollar' },
-      { code: 'MYR', name: 'Malaysian Ringgit' },
-      { code: 'PHP', name: 'Philippine Peso' },
-      { code: 'IDR', name: 'Indonesian Rupiah' },
-      { code: 'NZD', name: 'New Zealand Dollar' },
-      { code: 'ILS', name: 'Israeli Shekel' },
-      { code: 'UAH', name: 'Ukrainian Hryvnia' },
-      { code: 'RON', name: 'Romanian Leu' },
-      { code: 'HUF', name: 'Hungarian Forint' },
-      { code: 'CZK', name: 'Czech Koruna' },
-      { code: 'ARS', name: 'Argentine Peso' },
-      { code: 'CLP', name: 'Chilean Peso' },
-      { code: 'COP', name: 'Colombian Peso' },
-      { code: 'PEN', name: 'Peruvian Sol' }
+      { code: 'USD', name: 'US Dollar', symbol: '$' },
+      { code: 'EUR', name: 'Euro', symbol: '€' },
+      { code: 'GBP', name: 'British Pound', symbol: '£' },
+      { code: 'JPY', name: 'Japanese Yen', symbol: '¥' },
+      { code: 'CNY', name: 'Chinese Yuan', symbol: '¥' },
+      { code: 'INR', name: 'Indian Rupee', symbol: '₹' },
+      { code: 'AUD', name: 'Australian Dollar', symbol: 'A$' },
+      { code: 'CAD', name: 'Canadian Dollar', symbol: 'C$' },
+      { code: 'CHF', name: 'Swiss Franc', symbol: 'CHF' },
+      { code: 'SEK', name: 'Swedish Krona', symbol: 'kr' },
+      { code: 'NOK', name: 'Norwegian Krone', symbol: 'kr' },
+      { code: 'DKK', name: 'Danish Krone', symbol: 'kr' },
+      { code: 'PLN', name: 'Polish Zloty', symbol: 'zł' },
+      { code: 'TRY', name: 'Turkish Lira', symbol: '₺' },
+      { code: 'RUB', name: 'Russian Ruble', symbol: '₽' },
+      { code: 'BRL', name: 'Brazilian Real', symbol: 'R$' },
+      { code: 'MXN', name: 'Mexican Peso', symbol: '$' },
+      { code: 'ZAR', name: 'South African Rand', symbol: 'R' },
+      { code: 'KES', name: 'Kenyan Shilling', symbol: 'KSh' },
+      { code: 'NGN', name: 'Nigerian Naira', symbol: '₦' },
+      { code: 'GHS', name: 'Ghanaian Cedi', symbol: '₵' },
+      { code: 'UGX', name: 'Ugandan Shilling', symbol: 'USh' },
+      { code: 'TZS', name: 'Tanzanian Shilling', symbol: 'TSh' },
+      { code: 'AED', name: 'UAE Dirham', symbol: 'د.إ' },
+      { code: 'SAR', name: 'Saudi Riyal', symbol: '﷼' },
+      { code: 'QAR', name: 'Qatari Riyal', symbol: '﷼' },
+      { code: 'KWD', name: 'Kuwaiti Dinar', symbol: 'د.ك' },
+      { code: 'BHD', name: 'Bahraini Dinar', symbol: 'ب.د' },
+      { code: 'OMR', name: 'Omani Rial', symbol: 'ر.ع.' },
+      { code: 'EGP', name: 'Egyptian Pound', symbol: '£' },
+      { code: 'PKR', name: 'Pakistani Rupee', symbol: '₨' },
+      { code: 'BDT', name: 'Bangladeshi Taka', symbol: '৳' },
+      { code: 'THB', name: 'Thai Baht', symbol: '฿' },
+      { code: 'VND', name: 'Vietnamese Dong', symbol: '₫' },
+      { code: 'KRW', name: 'South Korean Won', symbol: '₩' },
+      { code: 'HKD', name: 'Hong Kong Dollar', symbol: 'HK$' },
+      { code: 'TWD', name: 'New Taiwan Dollar', symbol: 'NT$' },
+      { code: 'SGD', name: 'Singapore Dollar', symbol: 'S$' },
+      { code: 'MYR', name: 'Malaysian Ringgit', symbol: 'RM' },
+      { code: 'PHP', name: 'Philippine Peso', symbol: '₱' },
+      { code: 'IDR', name: 'Indonesian Rupiah', symbol: 'Rp' },
+      { code: 'NZD', name: 'New Zealand Dollar', symbol: 'NZ$' },
+      { code: 'ILS', name: 'Israeli Shekel', symbol: '₪' },
+      { code: 'UAH', name: 'Ukrainian Hryvnia', symbol: '₴' },
+      { code: 'RON', name: 'Romanian Leu', symbol: 'lei' },
+      { code: 'HUF', name: 'Hungarian Forint', symbol: 'Ft' },
+      { code: 'CZK', name: 'Czech Koruna', symbol: 'Kč' },
+      { code: 'ARS', name: 'Argentine Peso', symbol: '$' },
+      { code: 'CLP', name: 'Chilean Peso', symbol: '$' },
+      { code: 'COP', name: 'Colombian Peso', symbol: '$' },
+      { code: 'PEN', name: 'Peruvian Sol', symbol: 'S/' }
     ];
 
     function renderOptions(container, items, onSelect) {
@@ -1307,7 +1308,11 @@
       items.forEach(item => {
         const div = document.createElement('div');
         div.className = 'topbar-option';
-        div.innerHTML = `<span>${item.name}</span><small>${item.code}</small>`;
+        if (item.symbol) {
+          div.innerHTML = `<span>${item.name}</span><small>${item.symbol} ${item.code}</small>`;
+        } else {
+          div.innerHTML = `<span>${item.name}</span><small>${item.code}</small>`;
+        }
         div.addEventListener('click', () => onSelect(item));
         container.appendChild(div);
       });
@@ -1320,6 +1325,7 @@
     });
     renderOptions(currList, currencies, (item) => {
       currLabel.textContent = item.code;
+      currSymbol.textContent = item.symbol || '';
       currPanel.classList.remove('active');
     });
 
