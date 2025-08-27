@@ -514,20 +514,20 @@
     }
     
     .category-card i {
-      font-size: 3rem;
+      font-size: clamp(2rem, 5vw, 3rem);
       color: #ff6600;
       margin-bottom: 20px;
     }
     
     .category-card h3 {
-      font-size: 1.3rem;
+      font-size: clamp(1rem, 2.3vw, 1.3rem);
       color: #333;
       margin-bottom: 10px;
     }
     
     .category-card p {
       color: #666;
-      font-size: 0.9rem;
+      font-size: clamp(0.85rem, 1.8vw, 0.95rem);
     }
     
     /* Enhanced Products Section */
@@ -799,9 +799,32 @@
         align-items: center;
       }
       
-      .categories-grid,
       .products-grid {
         grid-template-columns: 1fr;
+      }
+      /* Make categories more responsive on tablets/large phones */
+      .categories-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+      }
+      .category-card {
+        padding: 24px;
+      }
+    }
+
+    /* Fine-tune category grid for small phones */
+    @media (max-width: 600px) {
+      .categories-grid {
+        grid-template-columns: repeat(2, minmax(140px, 1fr));
+        gap: 16px;
+      }
+    }
+
+    /* Single column on extra small screens */
+    @media (max-width: 400px) {
+      .categories-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
       }
     }
   </style>
