@@ -940,22 +940,7 @@
     </div>
   </header>
 
-  <!-- Welcome Heading Below Nav -->
-  <section class="welcome-inline">
-    <style>
-      .welcome-inline { padding: 16px 12px; background: #ffffff; text-align: center; }
-      .welcome-inline h1 { font-size: clamp(1.8rem, 4vw, 2.4rem); margin: 0 0 6px; }
-      .welcome-inline p { margin: 0 0 10px; color: #555; }
-      .welcome-inline .hero-buttons { display: inline-flex; gap: 10px; }
-      .welcome-inline .btn-invisible { visibility: hidden; }
-    </style>
-    <h1>Welcome to MujoMart</h1>
-    <p>Your Ultimate Global Shopping Destination - Millions of Products, Unbeatable Prices, Worldwide Shipping</p>
-    <div class="hero-buttons">
-      <a href="#" class="btn">Shop Now</a>
-      <a href="#" class="btn btn-secondary">Learn More</a>
-    </div>
-  </section>
+  <!-- Welcome Heading removed by request - keep nav flush to marquee -->
 
   <!-- Enhanced Dropdown Menu -->
   <div class="dropdown-menu" id="dropdownMenu">
@@ -1016,21 +1001,16 @@
   
 
   <!-- Enhanced Hero Section -->
-  <section class="hero">
-    <style>
-      .hero { position: relative; overflow: hidden; background: transparent; height: 40vh; padding: 0; }
-    </style>
-    
-  </section>
+  <!-- Hero spacer removed to eliminate blank space -->
   <!-- Product Strip (Left-to-Right Loop) -->
   <section class="marquee-section">
     <style>
-      .marquee-section { padding: 6px 0 16px; background: #ffffff; }
+      .marquee-section { padding: 0 0 16px; background: #ffffff; }
       .marquee-container { overflow: hidden; position: relative; }
-      .marquee-track { display: inline-flex; gap: 34px; align-items: center; animation: mm-scroll-right 28s linear infinite; will-change: transform; }
-      .marquee-item { display: flex; flex-direction: column; align-items: center; min-width: 320px; text-align: center; background: #fff; border-radius: 12px; padding: 14px; box-shadow: 0 8px 18px rgba(0,0,0,0.06); }
-      .marquee-item img { width: 300px; height: 220px; object-fit: cover; border-radius: 10px; }
-      .marquee-caption { margin-top: 10px; font-weight: 600; font-size: 17px; color: #222; }
+      .marquee-track { display: inline-flex; gap: 38px; align-items: center; animation: mm-scroll-right 28s linear infinite; will-change: transform; }
+      .marquee-item { display: flex; flex-direction: column; align-items: center; min-width: 380px; text-align: center; background: #fff; border-radius: 12px; padding: 16px; box-shadow: 0 10px 20px rgba(0,0,0,0.06); }
+      .marquee-item img { width: 340px; height: 250px; object-fit: cover; border-radius: 10px; }
+      .marquee-caption { margin-top: 12px; font-weight: 600; font-size: 18px; color: #222; }
       .marquee-price { color: #e63946; font-weight: 700; margin-left: 6px; }
       @keyframes mm-scroll-right { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
     </style>
