@@ -940,6 +940,22 @@
     </div>
   </header>
 
+  <!-- Welcome Heading Below Nav -->
+  <section class="welcome-inline">
+    <style>
+      .welcome-inline { padding: 16px 12px; background: #ffffff; text-align: center; }
+      .welcome-inline h1 { font-size: clamp(1.8rem, 4vw, 2.4rem); margin: 0 0 6px; }
+      .welcome-inline p { margin: 0 0 10px; color: #555; }
+      .welcome-inline .hero-buttons { display: inline-flex; gap: 10px; }
+    </style>
+    <h1>Welcome to MujoMart</h1>
+    <p>Your Ultimate Global Shopping Destination - Millions of Products, Unbeatable Prices, Worldwide Shipping</p>
+    <div class="hero-buttons">
+      <a href="#" class="btn">Shop Now</a>
+      <a href="#" class="btn btn-secondary">Learn More</a>
+    </div>
+  </section>
+
   <!-- Enhanced Dropdown Menu -->
   <div class="dropdown-menu" id="dropdownMenu">
     <div class="dropdown-header">
@@ -1010,10 +1026,10 @@
     <style>
       .marquee-section { padding: 10px 0; background: #ffffff; }
       .marquee-container { overflow: hidden; position: relative; }
-      .marquee-track { display: inline-flex; gap: 24px; align-items: center; animation: mm-scroll-right 28s linear infinite; will-change: transform; }
-      .marquee-item { display: flex; flex-direction: column; align-items: center; min-width: 180px; text-align: center; }
-      .marquee-item img { width: 160px; height: 120px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
-      .marquee-caption { margin-top: 8px; font-weight: 600; font-size: 14px; color: #222; }
+      .marquee-track { display: inline-flex; gap: 28px; align-items: center; animation: mm-scroll-right 28s linear infinite; will-change: transform; }
+      .marquee-item { display: flex; flex-direction: column; align-items: center; min-width: 240px; text-align: center; background: #fff; border-radius: 10px; padding: 10px; box-shadow: 0 6px 16px rgba(0,0,0,0.06); }
+      .marquee-item img { width: 220px; height: 160px; object-fit: cover; border-radius: 8px; }
+      .marquee-caption { margin-top: 8px; font-weight: 600; font-size: 15px; color: #222; }
       .marquee-price { color: #e63946; font-weight: 700; margin-left: 6px; }
       @keyframes mm-scroll-right { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
     </style>
@@ -1022,84 +1038,244 @@
         <div class="marquee-item">
           <img src="Gentle Shoes.jfif" alt="Gentle Shoes" loading="lazy" width="160" height="120">
           <div class="marquee-caption">Gentle Shoes <span class="marquee-price">$49</span></div>
+          <div class="product-rating">
+            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
+            <span class="rating-count">(214)</span>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="quick-view">Quick View</button>
+          </div>
         </div>
         <div class="marquee-item">
           <img src="wireless mouse.jfif" alt="Wireless Mouse" loading="lazy" width="160" height="120">
           <div class="marquee-caption">Wireless Mouse <span class="marquee-price">$15</span></div>
+          <div class="product-rating">
+            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div>
+            <span class="rating-count">(98)</span>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="quick-view">Quick View</button>
+          </div>
         </div>
         <div class="marquee-item">
           <img src="PS5.jfif" alt="PS5" loading="lazy" width="160" height="120">
           <div class="marquee-caption">PS5 <span class="marquee-price">$499</span></div>
+          <div class="product-rating">
+            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
+            <span class="rating-count">(1,004)</span>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="quick-view">Quick View</button>
+          </div>
         </div>
         <div class="marquee-item">
           <img src="Sneakers.jfif" alt="Sneakers" loading="lazy" width="160" height="120">
           <div class="marquee-caption">Sneakers <span class="marquee-price">$89</span></div>
+          <div class="product-rating">
+            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div>
+            <span class="rating-count">(342)</span>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="quick-view">Quick View</button>
+          </div>
         </div>
         <div class="marquee-item">
           <img src="Iron box.jfif" alt="Iron Box" loading="lazy" width="160" height="120">
           <div class="marquee-caption">Iron Box <span class="marquee-price">$25</span></div>
+          <div class="product-rating">
+            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div>
+            <span class="rating-count">(67)</span>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="quick-view">Quick View</button>
+          </div>
         </div>
         <div class="marquee-item">
           <img src="Epson Printer.jfif" alt="Epson Printer" loading="lazy" width="160" height="120">
           <div class="marquee-caption">Epson Printer <span class="marquee-price">$149</span></div>
+          <div class="product-rating">
+            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
+            <span class="rating-count">(192)</span>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="quick-view">Quick View</button>
+          </div>
         </div>
         <div class="marquee-item">
           <img src="Electric Keyboard.jfif" alt="Electric Keyboard" loading="lazy" width="160" height="120">
           <div class="marquee-caption">Electric Keyboard <span class="marquee-price">$199</span></div>
+          <div class="product-rating">
+            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
+            <span class="rating-count">(88)</span>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="quick-view">Quick View</button>
+          </div>
         </div>
         <div class="marquee-item">
           <img src="Samsung Galaxy.jfif" alt="Samsung Galaxy A05S" loading="lazy" width="160" height="120">
           <div class="marquee-caption">Samsung Galaxy A05S <span class="marquee-price">$179</span></div>
+          <div class="product-rating">
+            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div>
+            <span class="rating-count">(274)</span>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="quick-view">Quick View</button>
+          </div>
         </div>
         <div class="marquee-item">
           <img src="Smart Watch.jfif" alt="Smart Watch" loading="lazy" width="160" height="120">
           <div class="marquee-caption">Smart Watch <span class="marquee-price">$59</span></div>
+          <div class="product-rating">
+            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div>
+            <span class="rating-count">(521)</span>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="quick-view">Quick View</button>
+          </div>
         </div>
         <div class="marquee-item">
           <img src="Bag.jfif" alt="Bag" loading="lazy" width="160" height="120">
           <div class="marquee-caption">Bag <span class="marquee-price">$35</span></div>
+          <div class="product-rating">
+            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div>
+            <span class="rating-count">(64)</span>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="quick-view">Quick View</button>
+          </div>
         </div>
 
         <!-- Duplicate for seamless loop to the right -->
         <div class="marquee-item">
           <img src="Gentle Shoes.jfif" alt="Gentle Shoes" loading="lazy" width="160" height="120">
           <div class="marquee-caption">Gentle Shoes <span class="marquee-price">$49</span></div>
+          <div class="product-rating">
+            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
+            <span class="rating-count">(214)</span>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="quick-view">Quick View</button>
+          </div>
         </div>
         <div class="marquee-item">
           <img src="wireless mouse.jfif" alt="Wireless Mouse" loading="lazy" width="160" height="120">
           <div class="marquee-caption">Wireless Mouse <span class="marquee-price">$15</span></div>
+          <div class="product-rating">
+            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div>
+            <span class="rating-count">(98)</span>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="quick-view">Quick View</button>
+          </div>
         </div>
         <div class="marquee-item">
           <img src="PS5.jfif" alt="PS5" loading="lazy" width="160" height="120">
           <div class="marquee-caption">PS5 <span class="marquee-price">$499</span></div>
+          <div class="product-rating">
+            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
+            <span class="rating-count">(1,004)</span>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="quick-view">Quick View</button>
+          </div>
         </div>
         <div class="marquee-item">
           <img src="Sneakers.jfif" alt="Sneakers" loading="lazy" width="160" height="120">
           <div class="marquee-caption">Sneakers <span class="marquee-price">$89</span></div>
+          <div class="product-rating">
+            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div>
+            <span class="rating-count">(342)</span>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="quick-view">Quick View</button>
+          </div>
         </div>
         <div class="marquee-item">
           <img src="Iron box.jfif" alt="Iron Box" loading="lazy" width="160" height="120">
           <div class="marquee-caption">Iron Box <span class="marquee-price">$25</span></div>
+          <div class="product-rating">
+            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div>
+            <span class="rating-count">(67)</span>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="quick-view">Quick View</button>
+          </div>
         </div>
         <div class="marquee-item">
           <img src="Epson Printer.jfif" alt="Epson Printer" loading="lazy" width="160" height="120">
           <div class="marquee-caption">Epson Printer <span class="marquee-price">$149</span></div>
+          <div class="product-rating">
+            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
+            <span class="rating-count">(192)</span>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="quick-view">Quick View</button>
+          </div>
         </div>
         <div class="marquee-item">
           <img src="Electric Keyboard.jfif" alt="Electric Keyboard" loading="lazy" width="160" height="120">
           <div class="marquee-caption">Electric Keyboard <span class="marquee-price">$199</span></div>
+          <div class="product-rating">
+            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
+            <span class="rating-count">(88)</span>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="quick-view">Quick View</button>
+          </div>
         </div>
         <div class="marquee-item">
           <img src="Samsung Galaxy.jfif" alt="Samsung Galaxy A05S" loading="lazy" width="160" height="120">
           <div class="marquee-caption">Samsung Galaxy A05S <span class="marquee-price">$179</span></div>
+          <div class="product-rating">
+            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div>
+            <span class="rating-count">(274)</span>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="quick-view">Quick View</button>
+          </div>
         </div>
         <div class="marquee-item">
           <img src="Smart Watch.jfif" alt="Smart Watch" loading="lazy" width="160" height="120">
           <div class="marquee-caption">Smart Watch <span class="marquee-price">$59</span></div>
+          <div class="product-rating">
+            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div>
+            <span class="rating-count">(521)</span>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="quick-view">Quick View</button>
+          </div>
         </div>
         <div class="marquee-item">
           <img src="Bag.jfif" alt="Bag" loading="lazy" width="160" height="120">
           <div class="marquee-caption">Bag <span class="marquee-price">$35</span></div>
+          <div class="product-rating">
+            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div>
+            <span class="rating-count">(64)</span>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="quick-view">Quick View</button>
+          </div>
         </div>
       </div>
     </div>
