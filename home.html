@@ -1010,6 +1010,39 @@
 
   <!-- Enhanced Hero Section -->
   <section class="hero">
+    <style>
+      .hero { position: relative; overflow: hidden; }
+      .hero-bg-marquee { position: absolute; inset: 0; overflow: hidden; z-index: 0; opacity: 0.18; }
+      .hero-bg-track { position: absolute; left: 0; top: 50%; transform: translateY(-50%); display: flex; gap: 24px; width: max-content; animation: hero-scroll-left 30s linear infinite; }
+      .hero-bg-item { display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.5); border-radius: 10px; padding: 6px; }
+      .hero-bg-item img { width: 160px; height: 120px; object-fit: cover; border-radius: 8px; }
+      @keyframes hero-scroll-left { 0% { transform: translate(0, -50%); } 100% { transform: translate(-50%, -50%); } }
+      .hero-content { position: relative; z-index: 1; }
+    </style>
+    <div class="hero-bg-marquee" aria-hidden="true">
+      <div class="hero-bg-track">
+        <div class="hero-bg-item"><img src="Gentle Shoes.jfif" alt="Gentle Shoes"></div>
+        <div class="hero-bg-item"><img src="wireless mouse.jfif" alt="Wireless Mouse"></div>
+        <div class="hero-bg-item"><img src="PS5.jfif" alt="PS5"></div>
+        <div class="hero-bg-item"><img src="Sneakers.jfif" alt="Sneakers"></div>
+        <div class="hero-bg-item"><img src="Iron box.jfif" alt="Iron Box"></div>
+        <div class="hero-bg-item"><img src="Epson Printer.jfif" alt="Epson Printer"></div>
+        <div class="hero-bg-item"><img src="Electric Keyboard.jfif" alt="Electric Keyboard"></div>
+        <div class="hero-bg-item"><img src="Samsung Galaxy.jfif" alt="Samsung Galaxy A05S"></div>
+        <div class="hero-bg-item"><img src="Smart Watch.jfif" alt="Smart Watch"></div>
+        <div class="hero-bg-item"><img src="Bag.jfif" alt="Bag"></div>
+        <div class="hero-bg-item"><img src="Gentle Shoes.jfif" alt="Gentle Shoes"></div>
+        <div class="hero-bg-item"><img src="wireless mouse.jfif" alt="Wireless Mouse"></div>
+        <div class="hero-bg-item"><img src="PS5.jfif" alt="PS5"></div>
+        <div class="hero-bg-item"><img src="Sneakers.jfif" alt="Sneakers"></div>
+        <div class="hero-bg-item"><img src="Iron box.jfif" alt="Iron Box"></div>
+        <div class="hero-bg-item"><img src="Epson Printer.jfif" alt="Epson Printer"></div>
+        <div class="hero-bg-item"><img src="Electric Keyboard.jfif" alt="Electric Keyboard"></div>
+        <div class="hero-bg-item"><img src="Samsung Galaxy.jfif" alt="Samsung Galaxy A05S"></div>
+        <div class="hero-bg-item"><img src="Smart Watch.jfif" alt="Smart Watch"></div>
+        <div class="hero-bg-item"><img src="Bag.jfif" alt="Bag"></div>
+      </div>
+    </div>
     <div class="hero-content">
       <h1>Welcome to MujoMart</h1>
       <p>Your Ultimate Global Shopping Destination - Millions of Products, Unbeatable Prices, Worldwide Shipping</p>
@@ -1019,7 +1052,6 @@
       </div>
     </div>
   </section>
-
   <!-- Categories Section -->
   <section class="categories">
     <div class="categories-content">
