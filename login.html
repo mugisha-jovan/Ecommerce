@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MujoMart Login</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    body {
+      background: #f8f9fa;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+    .login-container {
+      background: #fff;
+      padding: 40px 30px 30px 30px;
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(44,62,80,0.13);
+      width: 100%;
+      max-width: 370px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .login-logo {
+      width: 180px;
+      height: 60px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .login-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+    .login-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 18px;
+      text-align: center;
+    }
+    .login-form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .login-form label {
+      font-size: 1rem;
+      color: #555;
+      margin-bottom: 6px;
+    }
+    .login-form input {
+      padding: 12px;
+      border: 1.5px solid #e9ecef;
+      border-radius: 8px;
+      font-size: 1rem;
+      outline: none;
+      transition: border 0.2s;
+    }
+    .login-form input:focus {
+      border-color: #ff6600;
+    }
+    .login-btn {
+      background: #ff6600;
+      color: #fff;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 8px;
+    }
+    .login-btn:hover {
+      background: #e65c00;
+    }
+    .login-links {
+      margin-top: 18px;
+      text-align: center;
+      font-size: 0.98rem;
+    }
+    .login-links a {
+      color: #ff6600;
+      text-decoration: none;
+      margin: 0 6px;
+      transition: color 0.2s;
+    }
+    .login-links a:hover {
+      color: #e65c00;
+    }
+    @media (max-width: 480px) {
+      .login-container {
+        padding: 24px 8px 18px 8px;
+        max-width: 98vw;
+      }
+      .login-logo {
+        width: 130px;
+        height: 44px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-logo">
+      <img src="final logo.png" alt="MujoMart Logo" loading="eager">
+    </div>
+    <div class="login-title">Sign in to MujoMart</div>
+    <form class="login-form" autocomplete="off">
+      <div>
+        <label for="email"><i class="fas fa-envelope"></i> Email</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required autocomplete="username">
+      </div>
+      <div>
+        <label for="password"><i class="fas fa-lock"></i> Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password" required autocomplete="current-password">
+      </div>
+      <button type="submit" class="login-btn">Login</button>
+    </form>
+    <div class="login-links">
+      <a href="#">Forgot password?</a> | 
+      <a href="#">Create an account</a>
+    </div>
