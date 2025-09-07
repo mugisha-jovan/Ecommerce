@@ -84,6 +84,52 @@
     .login-btn:hover {
       background: #e65c00;
     }
+    /* Separator and Google button styles */
+    .separator {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      margin: 16px 0 8px 0;
+      width: 100%;
+    }
+    .separator span {
+      color: #aaa;
+      font-size: 0.98rem;
+      padding: 0 12px;
+      background: #fff;
+      z-index: 1;
+    }
+    .separator:before,
+    .separator:after {
+      content: "";
+      flex: 1;
+      border-bottom: 1.5px solid #e9ecef;
+      margin: 0 4px;
+    }
+    .google-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: #fff;
+      color: #444;
+      border: 1.5px solid #e9ecef;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s, border 0.2s;
+      width: 100%;
+    }
+    .google-btn:hover {
+      background: #f5f5f5;
+      border-color: #ff6600;
+      color: #ff6600;
+    }
+    .google-btn i {
+      font-size: 1.2rem;
+    }
     .login-links {
       margin-top: 18px;
       text-align: center;
@@ -126,8 +172,17 @@
         <input type="password" id="password" name="password" placeholder="Enter your password" required autocomplete="current-password">
       </div>
       <button type="submit" class="login-btn">Login</button>
+      <div class="separator">
+        <span>or</span>
+      </div>
+      <button type="button" class="google-btn">
+        <i class="fab fa-google"></i> Continue with Google
+      </button>
     </form>
     <div class="login-links">
       <a href="#">Forgot password?</a> | 
       <a href="#">Create an account</a>
     </div>
+  </div>
+</body>
+</html>
