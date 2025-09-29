@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MujoMart Login</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    body {
+      background: #f8f9fa;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+    .login-container {
+      background: #fff;
+      padding: 40px 30px 30px 30px;
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(44,62,80,0.13);
+      width: 100%;
+      max-width: 370px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .login-logo {
+      width: 180px;
+      height: 100px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .login-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+    .login-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 18px;
+      text-align: center;
+    }
+    .login-form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .login-form label {
+      font-size: 1rem;
+      color: #555;
+      margin-bottom: 6px;
+    }
+    .login-form input {
+      padding: 12px;
+      border: 1.5px solid #e9ecef;
+      border-radius: 8px;
+      font-size: 1rem;
+      outline: none;
+      transition: border 0.2s;
+    }
+    .login-form input:focus {
+      border-color: #ff6600;
+    }
+    .login-btn {
+      background: #ff6600;
+      color: #fff;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 8px;
+    }
+    .login-btn:hover {
+      background: #e65c00;
+    }
+    /* Separator and Google button styles */
+    .separator {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      margin: 16px 0 8px 0;
+      width: 100%;
+    }
+    .separator span {
+      color: #aaa;
+      font-size: 0.98rem;
+      padding: 0 12px;
+      background: #fff;
+      z-index: 1;
+    }
+    .separator:before,
+    .separator:after {
+      content: "";
+      flex: 1;
+      border-bottom: 1.5px solid #e9ecef;
+      margin: 0 4px;
+    }
+    .google-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: #fff;
+      color: #444;
+      border: 1.5px solid #e9ecef;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s, border 0.2s;
+      width: 100%;
+    }
+    .google-btn:hover {
+      background: #f5f5f5;
+      border-color: #ff6600;
+      color: #ff6600;
+    }
+    .google-btn i {
+      font-size: 1.2rem;
+    }
+    .login-links {
+      margin-top: 18px;
+      text-align: center;
+      font-size: 0.98rem;
+    }
+    .login-links a {
+      color: #ff6600;
+      text-decoration: none;
+      margin: 0 6px;
+      transition: color 0.2s;
+    }
+    .login-links a:hover {
+      color: #e65c00;
+    }
+    @media (max-width: 480px) {
+      .login-container {
+        padding: 24px 8px 18px 8px;
+        max-width: 98vw;
+      }
+      .login-logo {
+        width: 130px;
+        height: 44px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-logo">
+      <img src="final logo.png" alt="MujoMart Logo" loading="eager">
+    </div>
+    <div class="login-title">Sign in to MujoMart</div>
+    <form class="login-form" autocomplete="off">
+      <div>
+        <label for="email"><i class="fas fa-envelope"></i> Email</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required autocomplete="username">
+      </div>
+      <div>
+        <label for="password"><i class="fas fa-lock"></i> Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password" required autocomplete="current-password">
+      </div>
+      <button type="submit" class="login-btn">Login</button>
+      <div class="separator">
+        <span>or</span>
+      </div>
+      <button type="button" class="google-btn">
+        <span class="google-icon">
+          <svg width="22" height="22" viewBox="0 0 48 48">
+            <g>
+              <path fill="#4285F4" d="M24 9.5c3.54 0 6.06 1.53 7.46 2.81l5.52-5.36C33.62 4.09 29.27 2 24 2 14.82 2 6.98 7.98 3.69 16.09l6.91 5.37C12.27 15.09 17.67 9.5 24 9.5z"/>
+              <path fill="#34A853" d="M46.1 24.55c0-1.64-.15-3.21-.42-4.73H24v9.02h12.42c-.54 2.9-2.18 5.36-4.66 7.01l7.19 5.59C43.98 37.09 46.1 31.36 46.1 24.55z"/>
+              <path fill="#FBBC05" d="M10.6 28.14a14.5 14.5 0 0 1 0-8.28l-6.91-5.37A23.97 23.97 0 0 0 2 24c0 3.77.9 7.34 2.49 10.49l7.11-6.35z"/>
+              <path fill="#EA4335" d="M24 46c6.48 0 11.92-2.14 15.89-5.83l-7.19-5.59c-2.01 1.35-4.59 2.16-8.7 2.16-6.33 0-11.73-5.59-13.4-12.98l-7.11 6.35C6.98 40.02 14.82 46 24 46z"/>
+              <path fill="none" d="M2 2h44v44H2z"/>
+            </g>
+          </svg>
+        </span>
+        Continue with Google
+      </button>
+    </form>
+    <div class="login-links">
+      <a href="#">Forgot password?</a> | 
+      <a href="register.html">Create an account</a>
+    </div>
+  </div>
+</body>
+</html>

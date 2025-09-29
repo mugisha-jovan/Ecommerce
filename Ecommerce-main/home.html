@@ -1,0 +1,2114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MujoMart - Your Ultimate Shopping Destination</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f8f9fa;
+      line-height: 1.6;
+      color: #333;
+    }
+    /* Global type scaling */
+    h1 { font-size: clamp(1.75rem, 3.5vw, 3rem); }
+    h2 { font-size: clamp(1.5rem, 3vw, 2.25rem); }
+    h3 { font-size: clamp(1.1rem, 2.2vw, 1.4rem); }
+    p, a, li, span { font-size: clamp(0.95rem, 1.6vw, 1rem); }
+    
+    /* Enhanced Header */
+    header {
+      background: white;
+      color: #333;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    
+    .top-bar {
+      background: #2c3e50;
+      color: white;
+      padding: 8px 0;
+      font-size: 12px;
+    }
+    
+    .top-bar-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+    }
+    @media (max-width: 768px) {
+      .top-bar-content { flex-wrap: wrap; gap: 6px; justify-content: center; }
+      .top-bar-left, .top-bar-right { flex-wrap: wrap; gap: 12px; justify-content: center; }
+    }
+    
+    .top-bar-left {
+      display: flex;
+      gap: 20px;
+    }
+    
+    .top-bar-right {
+      display: flex;
+      gap: 20px;
+    }
+    
+    .top-bar a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .top-bar a:hover {
+      color: #ff6600;
+    }
+    
+    /* Topbar dropdowns */
+    .topbar-dropdown {
+      position: relative;
+    }
+    .topbar-trigger {
+      color: white;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+    }
+    .topbar-trigger i.chev {
+      font-size: 10px;
+      opacity: 0.8;
+    }
+    .topbar-panel {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      margin-top: 8px;
+      background: #ffffff;
+      color: #333;
+      min-width: 260px;
+      max-height: 60vh;
+      border-radius: 10px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      border: 1px solid #e9ecef;
+      display: none;
+      overflow: hidden;
+      z-index: 1100;
+    }
+    .topbar-panel.active { display: block; }
+    .topbar-search {
+      padding: 10px;
+      border-bottom: 1px solid #f0f0f0;
+      background: #f8f9fa;
+    }
+    .topbar-search input {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid #e1e5ea;
+      border-radius: 6px;
+      font-size: 12px;
+      outline: none;
+    }
+    .topbar-list {
+      max-height: 48vh;
+      overflow: auto;
+    }
+    .topbar-option {
+      padding: 10px 12px;
+      cursor: pointer;
+      transition: background 0.2s;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+    }
+    .topbar-option:hover { background: #f8f9fa; }
+    .topbar-option small { color: #888; font-size: 11px; }
+    
+    .main-header {
+      background: white;
+      padding: 15px 20px;
+      border-bottom: 1px solid #e9ecef;
+    }
+    
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    
+    .hamburger-menu {
+      cursor: pointer;
+      font-size: 20px;
+      padding: 8px;
+      border-radius: 4px;
+      transition: all 0.3s;
+      color: #666;
+    }
+    
+    .hamburger-menu:hover {
+      background-color: #f8f9fa;
+      color: #ff6600;
+    }
+    
+    .logo {
+      width: 280px;
+      height: 50px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      position: relative;
+      overflow: visible;
+      margin-left: -20px;
+    }
+
+    /* Align logo to the true left edge on wide screens with centered content */
+    @media (min-width: 1201px) {
+      .logo {
+        margin-left: calc((100vw - 1200px) / -2 - 20px);
+      }
+    }
+    
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      transform: scale(2.0);
+      transform-origin: left top;
+    }
+    @media (max-width: 992px) {
+      .logo { width: 220px; height: 42px; }
+      .logo img { transform: scale(1.6); }
+    }
+    @media (max-width: 600px) {
+      .logo { width: 180px; height: 36px; }
+      .logo img { transform: scale(1.3); }
+    }
+    
+    .search-container {
+      flex: 1;
+      max-width: 500px;
+      margin: 0 40px;
+      position: relative;
+    }
+    
+    .search-input {
+      width: 100%;
+      padding: 12px 50px 12px 20px;
+      border: 2px solid #e9ecef;
+      border-radius: 25px;
+      font-size: 14px;
+      outline: none;
+      transition: all 0.3s;
+    }
+    
+    .search-input:focus {
+      border-color: #ff6600;
+      box-shadow: 0 0 0 3px rgba(255, 102, 0, 0.1);
+    }
+    
+    .search-btn {
+      position: absolute;
+      right: 5px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #ff6600;
+      color: white;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    
+    .search-btn:hover {
+      background: #e65c00;
+    }
+    
+    .user-actions {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+    
+    .user-actions a {
+      color: #333;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      font-size: 12px;
+      transition: color 0.3s;
+      padding: 8px;
+      border-radius: 8px;
+    }
+    
+    .user-actions a:hover {
+      color: #ff6600;
+      background: #f8f9fa;
+    }
+    
+    .user-actions i {
+      font-size: 18px;
+    }
+    
+    .cart-icon {
+      position: relative;
+    }
+    
+    .cart-count {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background: #ff6600;
+      color: white;
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: bold;
+    }
+    
+    /* Navigation Menu */
+    .nav-menu {
+      background: white;
+      border-bottom: 1px solid #e9ecef;
+      padding: 0 20px;
+    }
+    
+    .nav-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      white-space: nowrap;
+    }
+    .nav-content::-webkit-scrollbar { height: 6px; }
+    .nav-content::-webkit-scrollbar-thumb { background: #e1e5ea; border-radius: 3px; }
+    
+    .nav-item {
+      padding: 15px 0;
+      cursor: pointer;
+      transition: color 0.3s;
+      font-weight: 500;
+      position: relative;
+    }
+    
+    .nav-item:hover {
+      color: #ff6600;
+    }
+    
+    .nav-item:hover::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: #ff6600;
+    }
+    
+    /* Enhanced Dropdown Menu */
+    .dropdown-menu {
+      position: absolute;
+      background: white;
+      width: 300px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+      border-radius: 12px;
+      z-index: 999;
+      display: none;
+      max-height: 80vh;
+      overflow-y: auto;
+      border: 1px solid #e9ecef;
+      top: 100%;
+      left: 0;
+    }
+    
+    .dropdown-menu.active {
+      display: block;
+    }
+    @media (max-width: 768px) {
+      .dropdown-menu {
+        position: fixed;
+        left: 10px !important;
+        right: 10px;
+        top: 70px !important;
+        width: auto;
+        max-height: 70vh;
+        z-index: 1200;
+      }
+    }
+    
+    .dropdown-header {
+      padding: 20px;
+      border-bottom: 1px solid #e9ecef;
+      background: #f8f9fa;
+      border-radius: 12px 12px 0 0;
+    }
+    
+    .dropdown-header h3 {
+      color: #333;
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+    
+    .dropdown-header p {
+      color: #666;
+      font-size: 12px;
+    }
+    
+    .dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 15px 20px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    
+    .dropdown-item:last-child {
+      border-bottom: none;
+      border-radius: 0 0 12px 12px;
+    }
+    
+    .dropdown-item:hover {
+      background-color: #f8f9fa;
+    }
+    
+    .dropdown-item i {
+      font-size: 18px;
+      color: #ff6600;
+      width: 20px;
+      text-align: center;
+    }
+    
+    .dropdown-item span {
+      color: #333;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    
+    /* Enhanced Hero Section */
+    .hero {
+      background: transparent;
+      color: white;
+      text-align: center;
+      padding: 80px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before { content: none; }
+    
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .hero h1 {
+      font-size: clamp(2rem, 6vw, 3.5rem);
+      margin-bottom: 20px;
+      font-weight: 700;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    .hero p {
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      margin-bottom: 30px;
+      opacity: 0.9;
+    }
+    
+    .hero-buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .btn {
+      background: #ff6600;
+      color: white;
+      padding: clamp(12px, 2.2vw, 15px) clamp(18px, 3.2vw, 30px);
+      border: none;
+      cursor: pointer;
+      font-size: clamp(0.95rem, 1.9vw, 1rem);
+      border-radius: 8px;
+      transition: all 0.3s;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-block;
+    }
+    
+    .btn:hover {
+      background: #e65c00;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 102, 0, 0.3);
+    }
+    
+    .btn-secondary {
+      background: transparent;
+      border: 2px solid white;
+      color: white;
+    }
+    
+    .btn-secondary:hover {
+      background: white;
+      color: #333;
+    }
+    
+    /* Categories Section */
+    .categories {
+      padding: 60px 20px;
+      background: white;
+    }
+    
+    .categories-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .section-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    
+    .section-header h2 {
+      font-size: clamp(1.6rem, 4.2vw, 2.5rem);
+      color: #333;
+      margin-bottom: 15px;
+    }
+    
+    .section-header p {
+      font-size: 1.1rem;
+      color: #666;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+    
+    .category-card {
+      background: white;
+      border-radius: 15px;
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+      transition: all 0.3s;
+      border: 1px solid #f0f0f0;
+      cursor: pointer;
+    }
+    
+    .category-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    }
+    
+    .category-card i {
+      font-size: clamp(2rem, 5vw, 3rem);
+      color: #ff6600;
+      margin-bottom: 20px;
+    }
+    
+    .category-card h3 {
+      font-size: clamp(1rem, 2.3vw, 1.3rem);
+      color: #333;
+      margin-bottom: 10px;
+    }
+    
+    .category-card p {
+      color: #666;
+      font-size: clamp(0.85rem, 1.8vw, 0.95rem);
+    }
+    
+    /* Enhanced Products Section */
+    .products {
+      padding: 60px 20px;
+      background: #f8f9fa;
+    }
+    
+    .products-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    
+    .product-card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+      transition: all 0.3s;
+      position: relative;
+    }
+    
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    }
+    
+    .product-image {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+      height: auto;
+      min-height: 220px;
+    }
+    
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+    
+    .product-card:hover .product-image img {
+      transform: scale(1.1);
+    }
+    
+    .wishlist-btn {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: rgba(255,255,255,0.9);
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      transition: all 0.3s;
+      z-index: 2;
+    }
+    
+    .wishlist-btn:hover {
+      background: #ff6600;
+      color: white;
+      transform: scale(1.1);
+    }
+    
+    .product-info {
+      padding: 20px;
+    }
+    
+    .product-title {
+      font-size: clamp(1rem, 2.2vw, 1.2rem);
+      color: #333;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+    
+    .product-price {
+      font-size: clamp(1.1rem, 3vw, 1.4rem);
+      font-weight: 700;
+      color: #ff6600;
+      margin-bottom: 15px;
+    }
+    
+    .product-rating {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-bottom: 15px;
+    }
+    
+    .stars {
+      color: #ffc107;
+    }
+    
+    .rating-count {
+      color: #666;
+      font-size: 0.9rem;
+    }
+    
+    .product-actions {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .add-to-cart {
+      flex: 1;
+      background: #ff6600;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+      font-weight: 600;
+    }
+    
+    .add-to-cart:hover {
+      background: #e65c00;
+    }
+    
+    .quick-view {
+      background: #f8f9fa;
+      color: #333;
+      border: 1px solid #e9ecef;
+      padding: 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .quick-view:hover {
+      background: #e9ecef;
+    }
+    
+    /* Features Section */
+    .features {
+      padding: 60px 20px;
+      background: white;
+    }
+    
+    .features-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-top: 40px;
+    }
+    
+    .feature-item {
+      text-align: center;
+      padding: 20px;
+    }
+    
+    .feature-item i {
+      font-size: clamp(2rem, 6vw, 3rem);
+      color: #ff6600;
+      margin-bottom: 20px;
+    }
+    
+    .feature-item h3 {
+      font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+      color: #333;
+      margin-bottom: 15px;
+    }
+    
+    .feature-item p {
+      color: #666;
+      line-height: 1.7;
+    }
+    
+    /* Enhanced Footer */
+    footer {
+      background: #2c3e50;
+      color: white;
+      padding: 60px 20px 20px;
+    }
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+    @media (max-width: 600px) {
+      .footer-content { grid-template-columns: 1fr; gap: 24px; }
+      .footer-section a { line-height: 1.9; }
+    }
+    
+    .footer-section h4 {
+      margin-bottom: 20px;
+      color: #ff6600;
+      font-size: 1.2rem;
+    }
+    
+    .footer-section ul {
+      list-style: none;
+    }
+    
+    .footer-section ul li {
+      margin-bottom: 12px;
+    }
+    
+    .footer-section a {
+      color: #bdc3c7;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .footer-section a:hover {
+      color: #ff6600;
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid #34495e;
+      color: #bdc3c7;
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    
+    .social-links a {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      background: #34495e;
+      color: white;
+      text-align: center;
+      line-height: 40px;
+      border-radius: 50%;
+      transition: all 0.3s;
+    }
+    @media (max-width: 480px) {
+      .social-links a { width: 36px; height: 36px; line-height: 36px; }
+    }
+    
+    .social-links a:hover {
+      background: #ff6600;
+      transform: translateY(-3px);
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .header-content {
+        flex-direction: column;
+        gap: 20px;
+      }
+      
+      .search-container {
+        margin: 0;
+        max-width: 100%;
+      }
+      
+      .hero h1 { font-size: clamp(1.8rem, 8vw, 2.5rem); }
+      
+      .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .products-grid { grid-template-columns: 1fr; }
+      .nav-content { gap: 18px; }
+      .nav-item { padding: 12px 0; }
+      .user-actions { gap: 12px; }
+      .search-container { margin: 0; max-width: 100%; }
+      /* Make categories more responsive on tablets/large phones */
+      .categories-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+      }
+      .category-card {
+        padding: 24px;
+      }
+    }
+
+    /* Fine-tune category grid for small phones */
+    @media (max-width: 600px) {
+      .nav-menu { padding: 0 12px; }
+      .nav-content { gap: 14px; }
+      .categories-grid {
+        grid-template-columns: repeat(2, minmax(140px, 1fr));
+        gap: 16px;
+      }
+      .product-image { min-height: 180px; }
+      .product-actions { flex-direction: column; }
+      .add-to-cart, .quick-view { width: 100%; }
+    }
+
+    /* Single column on extra small screens */
+    @media (max-width: 400px) {
+      .categories-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+      .header-left { width: 100%; justify-content: center; }
+      .user-actions a { font-size: 11px; }
+      .btn { width: 100%; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="top-bar-content">
+      <div class="top-bar-left">
+        <span><i class="fas fa-phone"></i> +256701720024</span>
+        <span><i class="fas fa-envelope"></i> support@mujomart.com</span>
+      </div>
+      <div class="top-bar-right">
+        <div class="topbar-dropdown" id="langDd">
+          <a class="topbar-trigger"><i class="fas fa-globe"></i> <span id="langLabel">English</span> <i class="fas fa-chevron-down chev"></i></a>
+          <div class="topbar-panel" id="langPanel">
+            <div class="topbar-search"><input type="text" id="langSearch" placeholder="Search language..."></div>
+            <div class="topbar-list" id="langList"></div>
+          </div>
+        </div>
+        <div class="topbar-dropdown" id="currDd">
+          <a class="topbar-trigger"><i class="fas fa-coins"></i> <span id="currSymbol">$</span> <span id="currLabel">USD</span> <i class="fas fa-chevron-down chev"></i></a>
+          <div class="topbar-panel" id="currPanel">
+            <div class="topbar-search"><input type="text" id="currSearch" placeholder="Search currency..."></div>
+            <div class="topbar-list" id="currList"></div>
+          </div>
+        </div>
+        <a href="#"><i class="fas fa-shipping-fast"></i> Free Shipping</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Header -->
+  <header>
+    <div class="main-header">
+      <div class="header-content">
+        <div class="header-left">
+          <div class="logo">
+            <img src="final logo.png" alt="MujoMart Logo" loading="eager" width="280" height="50">
+          </div>
+        </div>
+        
+        <div class="search-container">
+          <input type="text" class="search-input" placeholder="Search for products, brands, and categories...">
+          <button class="search-btn"><i class="fas fa-search"></i></button>
+        </div>
+        
+        <div class="user-actions">
+          <a href="#"><i class="fas fa-user"></i> Account</a>
+          <a href="#"><i class="fas fa-heart"></i> Wishlist</a>
+          <a href="#" class="cart-icon"><i class="fas fa-shopping-cart"></i> Cart <span class="cart-count">0</span></a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Navigation Menu -->
+    <div class="nav-menu">
+      <div class="nav-content">
+        <div class="nav-item" id="categoriesMenu">
+          <i class="fas fa-bars"></i> All Categories
+        </div>
+        <div class="nav-item">Electronics</div>
+        <div class="nav-item">Fashion</div>
+        <div class="nav-item">Home & Garden</div>
+        <div class="nav-item">Sports</div>
+        <div class="nav-item">Books</div>
+        <div class="nav-item">Automotive</div>
+        <div class="nav-item">Health & Beauty</div>
+        <div class="nav-item">Toys & Games</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Welcome Heading removed by request - keep nav flush to marquee -->
+
+  <!-- Enhanced Dropdown Menu -->
+  <div class="dropdown-menu" id="dropdownMenu">
+    <div class="dropdown-header">
+      <h3>Shop by Category</h3>
+      <p>Discover millions of products across all categories</p>
+    </div>
+    <div class="dropdown-item">
+      <i class="fas fa-mobile-alt"></i>
+      <span>Phones & Tablets</span>
+    </div>
+    <div class="dropdown-item">
+      <i class="fas fa-tv"></i>
+      <span>Electronics</span>
+    </div>
+    <div class="dropdown-item">
+      <i class="fas fa-coffee"></i>
+      <span>Appliances</span>
+    </div>
+    <div class="dropdown-item">
+      <i class="fas fa-desktop"></i>
+      <span>Computing</span>
+    </div>
+    <div class="dropdown-item">
+      <i class="fas fa-gamepad"></i>
+      <span>Gaming</span>
+    </div>
+    <div class="dropdown-item">
+      <i class="fas fa-spa"></i>
+      <span>Health & Beauty</span>
+    </div>
+    <div class="dropdown-item">
+      <i class="fas fa-home"></i>
+      <span>Home & Garden</span>
+    </div>
+    <div class="dropdown-item">
+      <i class="fas fa-apple-alt"></i>
+      <span>Supermarket</span>
+    </div>
+    <div class="dropdown-item">
+      <i class="fas fa-tshirt"></i>
+      <span>Fashion</span>
+    </div>
+    <div class="dropdown-item">
+      <i class="fas fa-baby"></i>
+      <span>Baby Products</span>
+    </div>
+    <div class="dropdown-item">
+      <i class="fas fa-shopping-bag"></i>
+      <span>Official Stores</span>
+    </div>
+    <div class="dropdown-item">
+      <i class="fas fa-ellipsis-h"></i>
+      <span>View All Categories</span>
+    </div>
+  </div>
+
+  
+
+  <!-- Enhanced Hero Section -->
+  <!-- Hero spacer removed to eliminate blank space -->
+  <!-- Product Strip (Left-to-Right Loop) -->
+  <section class="marquee-section">
+    <style>
+      .marquee-section { padding: 0 0 16px; background: #ffffff; }
+      .marquee-container { overflow: hidden; position: relative; }
+      .marquee-track { display: inline-flex; gap: 38px; align-items: center; animation: mm-scroll-right 28s linear infinite; will-change: transform; }
+      .marquee-item { display: flex; flex-direction: column; align-items: center; min-width: 380px; text-align: center; background: #fff; border-radius: 12px; padding: 16px; box-shadow: 0 10px 20px rgba(0,0,0,0.06); }
+      .marquee-item img { width: 340px; height: 250px; object-fit: cover; border-radius: 10px; }
+      .marquee-caption { margin-top: 12px; font-weight: 600; font-size: 18px; color: #222; }
+      .marquee-price { color: #e63946; font-weight: 700; margin-left: 6px; }
+      @keyframes mm-scroll-right { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
+    </style>
+    <div class="marquee-container">
+      <div class="marquee-track">
+        <div class="marquee-item">
+          <img src="Gentle Shoes.jfif" alt="Gentle Shoes" loading="lazy" width="160" height="120">
+          <div class="marquee-caption">Gentle Shoes <span class="marquee-price">$55</span></div>
+          <div class="product-rating">
+            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
+            <span class="rating-count">(214)</span>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="quick-view">Quick View</button>
+          </div>
+        </div>
+        <div class="marquee-item">
+          <img src="wireless mouse.jfif" alt="Wireless Mouse" loading="lazy" width="160" height="120">
+          <div class="marquee-caption">Wireless Mouse <span class="marquee-price">$15</span></div>
+          <div class="product-rating">
+            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div>
+            <span class="rating-count">(98)</span>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="quick-view">Quick View</button>
+          </div>
+        </div>
+        <div class="marquee-item">
+          <img src="PS5.jfif" alt="PS5" loading="lazy" width="160" height="120">
+          <div class="marquee-caption">PS5 <span class="marquee-price">$499</span></div>
+          <div class="product-rating">
+            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
+            <span class="rating-count">(1,004)</span>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="quick-view">Quick View</button>
+          </div>
+        </div>
+        <div class="marquee-item">
+          <img src="Sneakers.jfif" alt="Sneakers" loading="lazy" width="160" height="120">
+          <div class="marquee-caption">Sneakers <span class="marquee-price">$89</span></div>
+          <div class="product-rating">
+            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div>
+            <span class="rating-count">(342)</span>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="quick-view">Quick View</button>
+          </div>
+        </div>
+        <div class="marquee-item">
+          <img src="Iron box.jfif" alt="Iron Box" loading="lazy" width="160" height="120">
+          <div class="marquee-caption">Iron Box <span class="marquee-price">$20</span></div>
+          <div class="product-rating">
+            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div>
+            <span class="rating-count">(67)</span>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="quick-view">Quick View</button>
+          </div>
+        </div>
+        <div class="marquee-item">
+          <img src="Epson Printer.jfif" alt="Epson Printer" loading="lazy" width="160" height="120">
+          <div class="marquee-caption">Epson Printer <span class="marquee-price">$150</span></div>
+          <div class="product-rating">
+            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
+            <span class="rating-count">(192)</span>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="quick-view">Quick View</button>
+          </div>
+        </div>
+        <div class="marquee-item">
+          <img src="Electric Keyboard.jfif" alt="Electric Keyboard" loading="lazy" width="160" height="120">
+          <div class="marquee-caption">Electric Keyboard <span class="marquee-price">$199</span></div>
+          <div class="product-rating">
+            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
+            <span class="rating-count">(88)</span>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="quick-view">Quick View</button>
+          </div>
+        </div>
+        <div class="marquee-item">
+          <img src="Samsung Galaxy.jfif" alt="Samsung Galaxy A05S" loading="lazy" width="160" height="120">
+          <div class="marquee-caption">Samsung Galaxy A05S <span class="marquee-price">$179</span></div>
+          <div class="product-rating">
+            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div>
+            <span class="rating-count">(274)</span>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="quick-view">Quick View</button>
+          </div>
+        </div>
+        <div class="marquee-item">
+          <img src="Smart Watch.jfif" alt="Smart Watch" loading="lazy" width="160" height="120">
+          <div class="marquee-caption">Smart Watch <span class="marquee-price">$70</span></div>
+          <div class="product-rating">
+            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div>
+            <span class="rating-count">(521)</span>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="quick-view">Quick View</button>
+          </div>
+        </div>
+        <div class="marquee-item">
+          <img src="Bag.jfif" alt="Bag" loading="lazy" width="160" height="120">
+          <div class="marquee-caption">Bag <span class="marquee-price">$40</span></div>
+          <div class="product-rating">
+            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div>
+            <span class="rating-count">(64)</span>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="quick-view">Quick View</button>
+          </div>
+        </div>
+
+        <!-- Duplicate for seamless loop to the right -->
+        <div class="marquee-item">
+          <img src="Gentle Shoes.jfif" alt="Gentle Shoes" loading="lazy" width="160" height="120">
+          <div class="marquee-caption">Gentle Shoes <span class="marquee-price">$58</span></div>
+          <div class="product-rating">
+            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
+            <span class="rating-count">(214)</span>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="quick-view">Quick View</button>
+          </div>
+        </div>
+        <div class="marquee-item">
+          <img src="wireless mouse.jfif" alt="Wireless Mouse" loading="lazy" width="160" height="120">
+          <div class="marquee-caption">Wireless Mouse <span class="marquee-price">$30</span></div>
+          <div class="product-rating">
+            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div>
+            <span class="rating-count">(98)</span>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="quick-view">Quick View</button>
+          </div>
+        </div>
+        <div class="marquee-item">
+          <img src="PS5.jfif" alt="PS5" loading="lazy" width="160" height="120">
+          <div class="marquee-caption">PS5 <span class="marquee-price">$400</span></div>
+          <div class="product-rating">
+            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
+            <span class="rating-count">(1,004)</span>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="quick-view">Quick View</button>
+          </div>
+        </div>
+        <div class="marquee-item">
+          <img src="Sneakers.jfif" alt="Sneakers" loading="lazy" width="160" height="120">
+          <div class="marquee-caption">Sneakers <span class="marquee-price">$40</span></div>
+          <div class="product-rating">
+            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div>
+            <span class="rating-count">(342)</span>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="quick-view">Quick View</button>
+          </div>
+        </div>
+        <div class="marquee-item">
+          <img src="Iron box.jfif" alt="Iron Box" loading="lazy" width="160" height="120">
+          <div class="marquee-caption">Iron Box <span class="marquee-price">$28</span></div>
+          <div class="product-rating">
+            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div>
+            <span class="rating-count">(67)</span>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="quick-view">Quick View</button>
+          </div>
+        </div>
+        <div class="marquee-item">
+          <img src="Epson Printer.jfif" alt="Epson Printer" loading="lazy" width="160" height="120">
+          <div class="marquee-caption">Epson Printer <span class="marquee-price">$156</span></div>
+          <div class="product-rating">
+            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
+            <span class="rating-count">(192)</span>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="quick-view">Quick View</button>
+          </div>
+        </div>
+        <div class="marquee-item">
+          <img src="Electric Keyboard.jfif" alt="Electric Keyboard" loading="lazy" width="160" height="120">
+          <div class="marquee-caption">Electric Keyboard <span class="marquee-price">$45</span></div>
+          <div class="product-rating">
+            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
+            <span class="rating-count">(88)</span>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="quick-view">Quick View</button>
+          </div>
+        </div>
+        <div class="marquee-item">
+          <img src="Samsung Galaxy.jfif" alt="Samsung Galaxy A05S" loading="lazy" width="160" height="120">
+          <div class="marquee-caption">Samsung Galaxy A05S <span class="marquee-price">$175</span></div>
+          <div class="product-rating">
+            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div>
+            <span class="rating-count">(274)</span>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="quick-view">Quick View</button>
+          </div>
+        </div>
+        <div class="marquee-item">
+          <img src="Smart Watch.jfif" alt="Smart Watch" loading="lazy" width="160" height="120">
+          <div class="marquee-caption">Smart Watch <span class="marquee-price">$55</span></div>
+          <div class="product-rating">
+            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div>
+            <span class="rating-count">(521)</span>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="quick-view">Quick View</button>
+          </div>
+        </div>
+        <div class="marquee-item">
+          <img src="Bag.jfif" alt="Bag" loading="lazy" width="160" height="120">
+          <div class="marquee-caption">Bag <span class="marquee-price">$40</span></div>
+          <div class="product-rating">
+            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div>
+            <span class="rating-count">(64)</span>
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="quick-view">Quick View</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Categories Section -->
+  <section class="categories">
+    <div class="categories-content">
+      <div class="section-header">
+        <h2>Shop by Category</h2>
+        <p>Discover amazing products across all major categories with competitive prices and fast shipping</p>
+      </div>
+      <div class="categories-grid">
+        <div class="category-card">
+          <i class="fas fa-mobile-alt"></i>
+          <h3>Electronics</h3>
+          <p>Latest smartphones, laptops, and gadgets</p>
+        </div>
+        <div class="category-card">
+          <i class="fas fa-tshirt"></i>
+          <h3>Fashion</h3>
+          <p>Trendy clothing and accessories</p>
+        </div>
+        <div class="category-card">
+          <i class="fas fa-home"></i>
+          <h3>Home & Garden</h3>
+          <p>Everything for your perfect home</p>
+        </div>
+        <div class="category-card">
+          <i class="fas fa-dumbbell"></i>
+          <h3>Sports & Fitness</h3>
+          <p>Stay active with quality equipment</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Enhanced Products Section -->
+  <section class="products">
+    <div class="products-content">
+      <div class="section-header">
+        <h2>Featured Products</h2>
+        <p>Handpicked products from top brands around the world</p>
+      </div>
+      <div class="products-grid">
+        <div class="product-card">
+          <div class="product-image">
+            <img src="iphone 15 pro max.jfif" alt="iPhone 15 Pro Max" loading="lazy" width="300" height="250">
+            <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+          </div>
+          <div class="product-info">
+            <h3 class="product-title">iPhone 15 Pro Max</h3>
+            <div class="product-price">$1,300</div>
+            <div class="product-rating">
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <span class="rating-count">(2,847 reviews)</span>
+            </div>
+            <div class="product-actions">
+              <button class="add-to-cart">Add to Cart</button>
+              <button class="quick-view">Quick View</button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="product-image">
+            <img src="mac book pro.jfif" alt="MacBook Pro Laptop" loading="lazy" width="300" height="250">
+            <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+          </div>
+          <div class="product-info">
+            <h3 class="product-title">MacBook Pro Laptop</h3>
+            <div class="product-price">$2,200</div>
+            <div class="product-rating">
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <span class="rating-count">(1,234 reviews)</span>
+            </div>
+            <div class="product-actions">
+              <button class="add-to-cart">Add to Cart</button>
+              <button class="quick-view">Quick View</button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="product-image">
+            <img src="Galaxy S24 Ultra.jfif" alt="Samsung Galaxy S24 Ultra" loading="lazy" width="300" height="250">
+            <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+          </div>
+          <div class="product-info">
+            <h3 class="product-title">Samsung Galaxy S24 Ultra</h3>
+            <div class="product-price">$1,500</div>
+            <div class="product-rating">
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+              </div>
+              <span class="rating-count">(856 reviews)</span>
+            </div>
+            <div class="product-actions">
+              <button class="add-to-cart">Add to Cart</button>
+              <button class="quick-view">Quick View</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Additional featured products -->
+        <div class="product-card">
+          <div class="product-image">
+            <img src="ipad.jfif" alt="iPad Pro 12.9" loading="lazy" width="300" height="250">
+            <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+          </div>
+          <div class="product-info">
+            <h3 class="product-title">iPad Pro 12.9 (M2)</h3>
+            <div class="product-price">$1,000</div>
+            <div class="product-rating">
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+              </div>
+              <span class="rating-count">(642 reviews)</span>
+            </div>
+            <div class="product-actions">
+              <button class="add-to-cart">Add to Cart</button>
+              <button class="quick-view">Quick View</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">
+            <img src="Air Jordan 4.jfif" alt="Air Jordan 4" loading="lazy" width="300" height="250">
+            <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+          </div>
+          <div class="product-info">
+            <h3 class="product-title">Air Jordan 4</h3>
+            <div class="product-price">$45</div>
+            <div class="product-rating">
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+              </div>
+              <span class="rating-count">(3,102 reviews)</span>
+            </div>
+            <div class="product-actions">
+              <button class="add-to-cart">Add to Cart</button>
+              <button class="quick-view">Quick View</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">
+            <img src="checked shirt.jfif" alt="Checked Shirt" loading="lazy" width="300" height="250">
+            <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+          </div>
+          <div class="product-info">
+            <h3 class="product-title">Checked Shirt</h3>
+            <div class="product-price">$30</div>
+            <div class="product-rating">
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+              </div>
+              <span class="rating-count">(5,478 reviews)</span>
+            </div>
+            <div class="product-actions">
+              <button class="add-to-cart">Add to Cart</button>
+              <button class="quick-view">Quick View</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">
+            <img src="cargo jeans.jfif" alt="Cargo Jeans" loading="lazy" width="300" height="250">
+            <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+          </div>
+          <div class="product-info">
+            <h3 class="product-title">Cargo Jeans</h3>
+            <div class="product-price">$229</div>
+            <div class="product-rating">
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+              </div>
+              <span class="rating-count">(987 reviews)</span>
+            </div>
+            <div class="product-actions">
+              <button class="add-to-cart">Add to Cart</button>
+              <button class="quick-view">Quick View</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">
+            <img src="Blazers.jfif" alt="Blazers" loading="lazy" width="300" height="250">
+            <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+          </div>
+          <div class="product-info">
+            <h3 class="product-title">Blazers</h3>
+            <div class="product-price">$300</div>
+            <div class="product-rating">
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+              </div>
+              <span class="rating-count">(4,210 reviews)</span>
+            </div>
+            <div class="product-actions">
+              <button class="add-to-cart">Add to Cart</button>
+              <button class="quick-view">Quick View</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- More featured products (expandable slots) -->
+        <div class="product-card">
+          <div class="product-image">
+            <img src="JBL Headphones.jfif" alt="JBL Headphones" loading="lazy" width="300" height="250">
+            <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+          </div>
+          <div class="product-info">
+            <h3 class="product-title">JBL Headphones</h3>
+            <div class="product-price">$55</div>
+            <div class="product-rating">
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+              </div>
+              <span class="rating-count">(1,120 reviews)</span>
+            </div>
+            <div class="product-actions">
+              <button class="add-to-cart">Add to Cart</button>
+              <button class="quick-view">Quick View</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">
+            <img src="JBL Charge 3 Waterproof.jfif" alt="JBL Charge 3 Waterproof" loading="lazy" width="300" height="250">
+            <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+          </div>
+          <div class="product-info">
+            <h3 class="product-title">JBL Charge 3 Waterproof</h3>
+            <div class="product-price">$130</div>
+            <div class="product-rating">
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+              </div>
+              <span class="rating-count">(2,532 reviews)</span>
+            </div>
+            <div class="product-actions">
+              <button class="add-to-cart">Add to Cart</button>
+              <button class="quick-view">Quick View</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">
+            <img src="Hisense.jfif" alt="Smart TV Hisense 65 inch" loading="lazy" width="300" height="250">
+            <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+          </div>
+          <div class="product-info">
+            <h3 class="product-title">Smart TV Hisense 65"</h3>
+            <div class="product-price">$899</div>
+            <div class="product-rating">
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+              </div>
+              <span class="rating-count">(2,814 reviews)</span>
+            </div>
+            <div class="product-actions">
+              <button class="add-to-cart">Add to Cart</button>
+              <button class="quick-view">Quick View</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">
+            <img src="sound bar.jfif" alt="Sony HT-S40R Bluetooth Sound Bar" loading="lazy" width="300" height="250">
+            <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+          </div>
+          <div class="product-info">
+            <h3 class="product-title">Sony HT-S40R Bluetooth Sound Bar</h3>
+            <div class="product-price">$279</div>
+            <div class="product-rating">
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+              </div>
+              <span class="rating-count">(4,562 reviews)</span>
+            </div>
+            <div class="product-actions">
+              <button class="add-to-cart">Add to Cart</button>
+              <button class="quick-view">Quick View</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">
+            <img src="Hisense Double Door.jfif" alt="Hisense Double Door Fridge" loading="lazy" width="300" height="250">
+            <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+          </div>
+          <div class="product-info">
+            <h3 class="product-title">Hisense Double Door Fridge</h3>
+            <div class="product-price">$150</div>
+            <div class="product-rating">
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+              </div>
+              <span class="rating-count">(1,758 reviews)</span>
+            </div>
+            <div class="product-actions">
+              <button class="add-to-cart">Add to Cart</button>
+              <button class="quick-view">Quick View</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">
+            <img src="cooker.jfif" alt="Cooker" loading="lazy" width="300" height="250">
+            <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+          </div>
+          <div class="product-info">
+            <h3 class="product-title">Cooker</h3>
+            <div class="product-price">$240</div>
+            <div class="product-rating">
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+              </div>
+              <span class="rating-count">(3,486 reviews)</span>
+            </div>
+            <div class="product-actions">
+              <button class="add-to-cart">Add to Cart</button>
+              <button class="quick-view">Quick View</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">
+            <img src="Electric kettle.jfif" alt="Electric Kettle" loading="lazy" width="300" height="250">
+            <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+          </div>
+          <div class="product-info">
+            <h3 class="product-title">Electric Kettle</h3>
+            <div class="product-price">$38</div>
+            <div class="product-rating">
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+              </div>
+              <span class="rating-count">(12,341 reviews)</span>
+            </div>
+            <div class="product-actions">
+              <button class="add-to-cart">Add to Cart</button>
+              <button class="quick-view">Quick View</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">
+            <img src="blender.jfif" alt="Blender" loading="lazy" width="300" height="250">
+            <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+          </div>
+          <div class="product-info">
+            <h3 class="product-title">Blender</h3>
+            <div class="product-price">$59</div>
+            <div class="product-rating">
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+              </div>
+              <span class="rating-count">(6,278 reviews)</span>
+            </div>
+            <div class="product-actions">
+              <button class="add-to-cart">Add to Cart</button>
+              <button class="quick-view">Quick View</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features">
+    <div class="features-content">
+      <div class="section-header">
+        <h2>Why Choose MujoMart?</h2>
+        <p>We're committed to providing the best shopping experience for our global customers</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-item">
+          <i class="fas fa-shipping-fast"></i>
+          <h3>Fast Global Shipping</h3>
+          <p>Free shipping on orders over $50. Fast delivery to different destinations.</p>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-shield-alt"></i>
+          <h3>Secure Shopping</h3>
+          <p>100% secure payment processing with SSL encryption and fraud protection.</p>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-undo"></i>
+          <h3>Easy Returns</h3>
+          <p>30-day return policy with hassle-free returns and full refunds.</p>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-headset"></i>
+          <h3>24/7 Support</h3>
+          <p>Round-the-clock customer support in multiple languages.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Enhanced Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Shop</a></li>
+          <li><a href="#">Categories</a></li>
+          <li><a href="#">Deals</a></li>
+          <li><a href="#">About Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Customer Service</h4>
+        <ul>
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Shipping Info</a></li>
+          <li><a href="#">Returns & Exchanges</a></li>
+          <li><a href="#">Size Guide</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Account</h4>
+        <ul>
+          <li><a href="#">My Account</a></li>
+          <li><a href="#">Order History</a></li>
+          <li><a href="#">Wishlist</a></li>
+          <li><a href="#">Rewards Program</a></li>
+          <li><a href="#">Refer a Friend</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Connect With Us</h4>
+        <p>Follow us on social media for the latest updates and exclusive offers.</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 MujoMart. All Rights Reserved. | Privacy Policy | Terms of Service | Cookie Policy</p>
+    </div>
+  </footer>
+
+  <script>
+    // Topbar Language and Currency dropdowns
+    const langDd = document.getElementById('langDd');
+    const langPanel = document.getElementById('langPanel');
+    const langList = document.getElementById('langList');
+    const langSearch = document.getElementById('langSearch');
+    const langLabel = document.getElementById('langLabel');
+
+    const currDd = document.getElementById('currDd');
+    const currPanel = document.getElementById('currPanel');
+    const currList = document.getElementById('currList');
+    const currSearch = document.getElementById('currSearch');
+    const currLabel = document.getElementById('currLabel');
+    const currSymbol = document.getElementById('currSymbol');
+
+    const languages = [
+      { code: 'en', name: 'English' },
+      { code: 'es', name: 'Spanish' },
+      { code: 'fr', name: 'French' },
+      { code: 'de', name: 'German' },
+      { code: 'zh', name: 'Chinese (Mandarin)' },
+      { code: 'zh-TW', name: 'Chinese (Traditional)' },
+      { code: 'ar', name: 'Arabic' },
+      { code: 'pt', name: 'Portuguese' },
+      { code: 'ru', name: 'Russian' },
+      { code: 'ja', name: 'Japanese' },
+      { code: 'ko', name: 'Korean' },
+      { code: 'it', name: 'Italian' },
+      { code: 'nl', name: 'Dutch' },
+      { code: 'sv', name: 'Swedish' },
+      { code: 'no', name: 'Norwegian' },
+      { code: 'da', name: 'Danish' },
+      { code: 'fi', name: 'Finnish' },
+      { code: 'pl', name: 'Polish' },
+      { code: 'tr', name: 'Turkish' },
+      { code: 'he', name: 'Hebrew' },
+      { code: 'hi', name: 'Hindi' },
+      { code: 'bn', name: 'Bengali' },
+      { code: 'ur', name: 'Urdu' },
+      { code: 'fa', name: 'Persian' },
+      { code: 'sw', name: 'Swahili' },
+      { code: 'am', name: 'Amharic' },
+      { code: 'yo', name: 'Yoruba' },
+      { code: 'ig', name: 'Igbo' },
+      { code: 'ha', name: 'Hausa' },
+      { code: 'zu', name: 'Zulu' },
+      { code: 'xh', name: 'Xhosa' },
+      { code: 'af', name: 'Afrikaans' },
+      { code: 'el', name: 'Greek' },
+      { code: 'cs', name: 'Czech' },
+      { code: 'sk', name: 'Slovak' },
+      { code: 'ro', name: 'Romanian' },
+      { code: 'hu', name: 'Hungarian' },
+      { code: 'uk', name: 'Ukrainian' },
+      { code: 'bg', name: 'Bulgarian' },
+      { code: 'sr', name: 'Serbian' },
+      { code: 'hr', name: 'Croatian' },
+      { code: 'sl', name: 'Slovenian' },
+      { code: 'et', name: 'Estonian' },
+      { code: 'lv', name: 'Latvian' },
+      { code: 'lt', name: 'Lithuanian' },
+      { code: 'ms', name: 'Malay' },
+      { code: 'id', name: 'Indonesian' },
+      { code: 'th', name: 'Thai' },
+      { code: 'vi', name: 'Vietnamese' },
+      { code: 'ta', name: 'Tamil' },
+      { code: 'te', name: 'Telugu' },
+      { code: 'mr', name: 'Marathi' },
+      { code: 'gu', name: 'Gujarati' },
+      { code: 'pa', name: 'Punjabi' },
+      { code: 'ml', name: 'Malayalam' },
+      { code: 'kn', name: 'Kannada' },
+      { code: 'si', name: 'Sinhala' },
+      { code: 'ne', name: 'Nepali' },
+      { code: 'my', name: 'Burmese' },
+      { code: 'km', name: 'Khmer' },
+      { code: 'lo', name: 'Lao' },
+      { code: 'mn', name: 'Mongolian' },
+      { code: 'fil', name: 'Filipino' },
+      { code: 'ga', name: 'Irish' },
+      { code: 'cy', name: 'Welsh' },
+      { code: 'ca', name: 'Catalan' },
+      { code: 'eu', name: 'Basque' },
+      { code: 'gl', name: 'Galician' },
+      { code: 'is', name: 'Icelandic' },
+      { code: 'mt', name: 'Maltese' },
+      { code: 'sq', name: 'Albanian' },
+      { code: 'mk', name: 'Macedonian' },
+      { code: 'kk', name: 'Kazakh' },
+      { code: 'uz', name: 'Uzbek' },
+      { code: 'tg', name: 'Tajik' },
+      { code: 'ky', name: 'Kyrgyz' },
+      { code: 'ps', name: 'Pashto' },
+      { code: 'az', name: 'Azerbaijani' },
+      { code: 'ka', name: 'Georgian' },
+      { code: 'hy', name: 'Armenian' },
+      { code: 'ur', name: 'Urdu' },
+      { code: 'sd', name: 'Sindhi' },
+      { code: 'ku', name: 'Kurdish' },
+      { code: 'bs', name: 'Bosnian' },
+      { code: 'eo', name: 'Esperanto' },
+    ];
+
+    const currencies = [
+      { code: 'USD', name: 'US Dollar', symbol: '$' },
+      { code: 'EUR', name: 'Euro', symbol: '€' },
+      { code: 'GBP', name: 'British Pound', symbol: '£' },
+      { code: 'JPY', name: 'Japanese Yen', symbol: '¥' },
+      { code: 'CNY', name: 'Chinese Yuan', symbol: '¥' },
+      { code: 'INR', name: 'Indian Rupee', symbol: '₹' },
+      { code: 'AUD', name: 'Australian Dollar', symbol: 'A$' },
+      { code: 'CAD', name: 'Canadian Dollar', symbol: 'C$' },
+      { code: 'CHF', name: 'Swiss Franc', symbol: 'CHF' },
+      { code: 'SEK', name: 'Swedish Krona', symbol: 'kr' },
+      { code: 'NOK', name: 'Norwegian Krone', symbol: 'kr' },
+      { code: 'DKK', name: 'Danish Krone', symbol: 'kr' },
+      { code: 'PLN', name: 'Polish Zloty', symbol: 'zł' },
+      { code: 'TRY', name: 'Turkish Lira', symbol: '₺' },
+      { code: 'RUB', name: 'Russian Ruble', symbol: '₽' },
+      { code: 'BRL', name: 'Brazilian Real', symbol: 'R$' },
+      { code: 'MXN', name: 'Mexican Peso', symbol: '$' },
+      { code: 'ZAR', name: 'South African Rand', symbol: 'R' },
+      { code: 'KES', name: 'Kenyan Shilling', symbol: 'KSh' },
+      { code: 'NGN', name: 'Nigerian Naira', symbol: '₦' },
+      { code: 'GHS', name: 'Ghanaian Cedi', symbol: '₵' },
+      { code: 'UGX', name: 'Ugandan Shilling', symbol: 'USh' },
+      { code: 'TZS', name: 'Tanzanian Shilling', symbol: 'TSh' },
+      { code: 'AED', name: 'UAE Dirham', symbol: 'د.إ' },
+      { code: 'SAR', name: 'Saudi Riyal', symbol: '﷼' },
+      { code: 'QAR', name: 'Qatari Riyal', symbol: '﷼' },
+      { code: 'KWD', name: 'Kuwaiti Dinar', symbol: 'د.ك' },
+      { code: 'BHD', name: 'Bahraini Dinar', symbol: 'ب.د' },
+      { code: 'OMR', name: 'Omani Rial', symbol: 'ر.ع.' },
+      { code: 'EGP', name: 'Egyptian Pound', symbol: '£' },
+      { code: 'PKR', name: 'Pakistani Rupee', symbol: '₨' },
+      { code: 'BDT', name: 'Bangladeshi Taka', symbol: '৳' },
+      { code: 'THB', name: 'Thai Baht', symbol: '฿' },
+      { code: 'VND', name: 'Vietnamese Dong', symbol: '₫' },
+      { code: 'KRW', name: 'South Korean Won', symbol: '₩' },
+      { code: 'HKD', name: 'Hong Kong Dollar', symbol: 'HK$' },
+      { code: 'TWD', name: 'New Taiwan Dollar', symbol: 'NT$' },
+      { code: 'SGD', name: 'Singapore Dollar', symbol: 'S$' },
+      { code: 'MYR', name: 'Malaysian Ringgit', symbol: 'RM' },
+      { code: 'PHP', name: 'Philippine Peso', symbol: '₱' },
+      { code: 'IDR', name: 'Indonesian Rupiah', symbol: 'Rp' },
+      { code: 'NZD', name: 'New Zealand Dollar', symbol: 'NZ$' },
+      { code: 'ILS', name: 'Israeli Shekel', symbol: '₪' },
+      { code: 'UAH', name: 'Ukrainian Hryvnia', symbol: '₴' },
+      { code: 'RON', name: 'Romanian Leu', symbol: 'lei' },
+      { code: 'HUF', name: 'Hungarian Forint', symbol: 'Ft' },
+      { code: 'CZK', name: 'Czech Koruna', symbol: 'Kč' },
+      { code: 'ARS', name: 'Argentine Peso', symbol: '$' },
+      { code: 'CLP', name: 'Chilean Peso', symbol: '$' },
+      { code: 'COP', name: 'Colombian Peso', symbol: '$' },
+      { code: 'PEN', name: 'Peruvian Sol', symbol: 'S/' }
+    ];
+
+    function renderOptions(container, items, onSelect) {
+      container.innerHTML = '';
+      items.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'topbar-option';
+        if (item.symbol) {
+          div.innerHTML = `<span>${item.name}</span><small>${item.symbol} ${item.code}</small>`;
+        } else {
+          div.innerHTML = `<span>${item.name}</span><small>${item.code}</small>`;
+        }
+        div.addEventListener('click', () => onSelect(item));
+        container.appendChild(div);
+      });
+    }
+
+    // Initialize lists
+    renderOptions(langList, languages, (item) => {
+      langLabel.textContent = item.name;
+      langPanel.classList.remove('active');
+    });
+    renderOptions(currList, currencies, (item) => {
+      currLabel.textContent = item.code;
+      currSymbol.textContent = item.symbol || '';
+      currPanel.classList.remove('active');
+    });
+
+    // Toggle handlers
+    langDd.querySelector('.topbar-trigger').addEventListener('click', (e) => {
+      e.stopPropagation();
+      langPanel.classList.toggle('active');
+      currPanel.classList.remove('active');
+    });
+    currDd.querySelector('.topbar-trigger').addEventListener('click', (e) => {
+      e.stopPropagation();
+      currPanel.classList.toggle('active');
+      langPanel.classList.remove('active');
+    });
+
+    // Search filters
+    langSearch.addEventListener('input', () => {
+      const q = langSearch.value.toLowerCase();
+      const filtered = languages.filter(l => l.name.toLowerCase().includes(q) || l.code.toLowerCase().includes(q));
+      renderOptions(langList, filtered, (item) => {
+        langLabel.textContent = item.name;
+        langPanel.classList.remove('active');
+      });
+    });
+    currSearch.addEventListener('input', () => {
+      const q = currSearch.value.toLowerCase();
+      const filtered = currencies.filter(c => c.name.toLowerCase().includes(q) || c.code.toLowerCase().includes(q));
+      renderOptions(currList, filtered, (item) => {
+        currLabel.textContent = item.code;
+        currPanel.classList.remove('active');
+      });
+    });
+
+    // Close on outside click
+    document.addEventListener('click', () => {
+      langPanel.classList.remove('active');
+      currPanel.classList.remove('active');
+    });
+    // Enhanced Dropdown menu functionality (restored)
+    const categoriesMenu = document.getElementById('categoriesMenu');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+    
+    categoriesMenu.addEventListener('click', function(e) {
+      e.stopPropagation();
+      dropdownMenu.classList.toggle('active');
+      
+      // Position dropdown relative to categories menu
+      if (dropdownMenu.classList.contains('active')) {
+        const rect = categoriesMenu.getBoundingClientRect();
+        dropdownMenu.style.top = (rect.bottom + 5) + 'px';
+        dropdownMenu.style.left = rect.left + 'px';
+      }
+    });
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(event) {
+      if (!categoriesMenu.contains(event.target) && !dropdownMenu.contains(event.target)) {
+        dropdownMenu.classList.remove('active');
+      }
+    });
+    
+    // Close dropdown on window resize
+    window.addEventListener('resize', function() {
+      dropdownMenu.classList.remove('active');
+    });
+    // Enhanced Wishlist functionality
+    const wishlistBtns = document.querySelectorAll('.wishlist-btn');
+    wishlistBtns.forEach(btn => {
+      btn.addEventListener('click', function() {
+        const icon = this.querySelector('i');
+        if (icon.classList.contains('far')) {
+          icon.classList.remove('far');
+          icon.classList.add('fas');
+          icon.style.color = '#ff6600';
+          this.style.background = '#ff6600';
+          this.style.color = 'white';
+        } else {
+          icon.classList.remove('fas');
+          icon.classList.add('far');
+          icon.style.color = '';
+          this.style.background = 'rgba(255,255,255,0.9)';
+          this.style.color = '#333';
+        }
+      });
+    });
+
+    // Enhanced Add to cart functionality
+    const addToCartBtns = document.querySelectorAll('.add-to-cart');
+    let cartCount = 0;
+    const cartCountElement = document.querySelector('.cart-count');
+
+    addToCartBtns.forEach(btn => {
+      btn.addEventListener('click', function() {
+        cartCount++;
+        cartCountElement.textContent = cartCount;
+        
+        // Show success message
+        const originalText = this.textContent;
+        this.textContent = 'Added!';
+        this.style.background = '#28a745';
+        
+        setTimeout(() => {
+          this.textContent = originalText;
+          this.style.background = '';
+        }, 2000);
+      });
+    });
+
+    // Enhanced Search functionality
+    const searchInput = document.querySelector('.search-input');
+    const searchBtn = document.querySelector('.search-btn');
+    
+    searchBtn.addEventListener('click', function() {
+      const query = searchInput.value.trim();
+      if (query) {
+        alert(`Searching for: ${query}`);
+        // Here you would typically implement actual search functionality
+      }
+    });
+
+    // Enter key search
+    searchInput.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        searchBtn.click();
+      }
+    });
+
+    // Smooth scrolling for navigation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

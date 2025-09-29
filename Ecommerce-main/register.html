@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MujoMart Register</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    body {
+      background: #f8f9fa;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+    .register-container {
+      background: #fff;
+      padding: 40px 30px 30px 30px;
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(44,62,80,0.13);
+      width: 100%;
+      max-width: 400px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .register-logo {
+      width: 180px;
+      height: 100px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .register-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+    .register-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 18px;
+      text-align: center;
+    }
+    .register-form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .register-form label {
+      font-size: 1rem;
+      color: #555;
+      margin-bottom: 6px;
+    }
+    .register-form input {
+      padding: 12px;
+      border: 1.5px solid #e9ecef;
+      border-radius: 8px;
+      font-size: 1rem;
+      outline: none;
+      transition: border 0.2s;
+    }
+    .register-form input:focus {
+      border-color: #ff6600;
+    }
+    .register-btn {
+      background: #ff6600;
+      color: #fff;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 8px;
+    }
+    .register-btn:hover {
+      background: #e65c00;
+    }
+    .register-links {
+      margin-top: 18px;
+      text-align: center;
+      font-size: 0.98rem;
+    }
+    .register-links a {
+      color: #ff6600;
+      text-decoration: none;
+      margin: 0 6px;
+      transition: color 0.2s;
+    }
+    .register-links a:hover {
+      color: #e65c00;
+    }
+    @media (max-width: 480px) {
+      .register-container {
+        padding: 24px 8px 18px 8px;
+        max-width: 98vw;
+      }
+      .register-logo {
+        width: 130px;
+        height: 44px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="register-container">
+    <div class="register-logo">
+      <img src="final logo.png" alt="MujoMart Logo" loading="eager">
+    </div>
+    <div class="register-title">Create your MujoMart Account</div>
+    <form class="register-form" autocomplete="off">
+      <div>
+        <label for="fullname"><i class="fas fa-user"></i> Full Name</label>
+        <input type="text" id="fullname" name="fullname" placeholder="Enter your full name" required>
+      </div>
+      <div>
+        <label for="email"><i class="fas fa-envelope"></i> Email</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required autocomplete="username">
+      </div>
+      <div>
+        <label for="password"><i class="fas fa-lock"></i> Password</label>
+        <input type="password" id="password" name="password" placeholder="Create a password" required autocomplete="new-password">
+      </div>
+      <div>
+        <label for="confirm-password"><i class="fas fa-lock"></i> Confirm Password</label>
+        <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password" required autocomplete="new-password">
+      </div>
+      <button type="submit" class="register-btn">Register</button>
+    </form>
+    <div class="register-links">
+      Already have an account?
+      <a href="login.html">Sign in</a>
+    </div>
+  </div>
+</body>
+</html>
